@@ -3,4 +3,7 @@
     <string name="information_center">Information Center</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="button">Button</string>
+    <string name="cancel">Cancel</string>
+    <string name="signup">SignUp</string>
 </resources>
