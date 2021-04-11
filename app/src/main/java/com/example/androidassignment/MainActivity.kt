@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(){
             when (it.itemId){
                 R.id.infoCenter -> makeCurrentFragment(infoFragment)
                 R.id.profile -> makeCurrentFragment(profileFragment)
-                R.id.community -> makeCurrentFragment(communityFragment)
+                R.id.CommunityActivity -> makeCurrentFragment(communityFragment)
             }
             true
         }
