@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.androidassignment.databinding.CommunityFragmentBinding
 import android.content.Intent
 import android.widget.Button
-import com.example.androidassignment.databinding.FragmentAdminInfoCenterBinding
+import com.example.androidassignment.databinding.ActivityLoginBinding
 
 class CommunityActivity : Fragment() {
 
@@ -23,11 +23,11 @@ class CommunityActivity : Fragment() {
     private var _binding: CommunityFragmentBinding? = null
     private val binding get() = _binding!!
 
-    companion object {
+    /*companion object {
         fun newInstance() = CommunityActivity()
-    }
 
-    private lateinit var viewModel: CommunityViewModel
+
+    private lateinit var viewModel: CommunityViewModel */
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -41,8 +41,12 @@ class CommunityActivity : Fragment() {
             getActivity()?.startActivity(intent)
         }
 
-        return view
+        binding.EditPost.setOnClickListener{
+            val intent= Intent(getActivity(), ManagePostActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
 
+        return view
     }
 
     override fun onDestroyView() {
@@ -50,10 +54,10 @@ class CommunityActivity : Fragment() {
         _binding = null
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CommunityViewModel::class.java)
         // TODO: Use the ViewModel
-    }
+    }*/
 }
 

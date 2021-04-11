@@ -5,23 +5,25 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidassignment.databinding.AddPostActivityBinding
 import com.example.androidassignment.databinding.CreatePostFragmentBinding
+import com.example.androidassignment.databinding.ManagePostFragmentBinding
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
 import java.util.*
 
-class CreatePostActivity : AppCompatActivity() {
+class ManagePostActivity : AppCompatActivity() {
 
-    lateinit var binding: CreatePostFragmentBinding
+    lateinit var binding: ManagePostFragmentBinding
     lateinit var filepath: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.create_post_fragment)
+        setContentView(R.layout.manage_post_fragment)
 
-        binding = CreatePostFragmentBinding.inflate(layoutInflater)
+        binding = ManagePostFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.Submit.setOnClickListener {
@@ -29,19 +31,18 @@ class CreatePostActivity : AppCompatActivity() {
 
         }
 
-        binding.Cancel.setOnClickListener {
+        binding.Delete.setOnClickListener {
 
         }
 
         binding.Upload.setOnClickListener{
             choosePic();
         }
-
     }
 
     private fun submitPost(){
-        val topic = binding.TopicInput
-        val description = binding.DescriptionInput
+        val topic = binding.Topic
+        val description = binding.Description
 
         if(topic.text.isEmpty()){
             topic.error = "Please enter the topic"
