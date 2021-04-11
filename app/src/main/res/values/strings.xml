@@ -1,9 +1,22 @@
 <resources>
-    <string name="app_name">Android Assignment</string>
+    <string name="app_name">OKU APP</string>
     <string name="information_center">Information Center</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="button">Button</string>
     <string name="cancel">Cancel</string>
     <string name="signup">SignUp</string>
+    <string name="login">Log In</string>
+    <string name="ForgetPassword">Forget Password</string>
+    <string name="header">Header</string>
+    <string name="username">Username :</string>
+    <string name="password">Password :</string>
+    <string name="leejunxian">LeeJunXian</string>
+    <string name="Password">Password</string>
+    <string name="plcEmail">diunasing@gmail.com</string>
+    <string name="email_address">Email Address:</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+    <string name="people">people</string>
 </resources>
