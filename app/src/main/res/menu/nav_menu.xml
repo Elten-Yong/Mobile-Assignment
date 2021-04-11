@@ -7,7 +7,7 @@
         android:title="Info Center"/>
 
     <item
-        android:id="@+id/community"
+        android:id="@+id/CommunityActivity"
         android:icon="@drawable/icon_community"
         android:title="Community" />
 

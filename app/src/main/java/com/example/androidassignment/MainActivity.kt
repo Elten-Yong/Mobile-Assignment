@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity(){
 
         val infoFragment = admin_info_center()
         val profileFragment = profile()
+        val communityFragment = CommunityActivity()
 
         makeCurrentFragment(infoFragment)
 
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity(){
             when (it.itemId){
                 R.id.infoCenter -> makeCurrentFragment(infoFragment)
                 R.id.profile -> makeCurrentFragment(profileFragment)
+                R.id.CommunityActivity -> makeCurrentFragment(communityFragment)
             }
             true
         }
