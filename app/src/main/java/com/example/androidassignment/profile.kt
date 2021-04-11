@@ -1,13 +1,16 @@
 package com.example.androidassignment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.androidassignment.databinding.ProfileFragmentBinding
 
 class profile : Fragment() {
+    private var _binding: ProfileFragmentBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance() = profile()
@@ -17,7 +20,16 @@ class profile : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.profile_fragment, container, false)
+
+        _binding = ProfileFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

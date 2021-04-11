@@ -1,13 +1,17 @@
 package com.example.androidassignment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.androidassignment.databinding.InfoCenterFragmentBinding
 
 class infoCenter : Fragment() {
+
+    private var _binding: InfoCenterFragmentBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance() = infoCenter()
