@@ -9,14 +9,17 @@ import com.example.androidassignment.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
+
 class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding // viewbinding
-    private lateinit var auth: FirebaseAuth // firebase
+    private lateinit var auth: FirebaseAuth // firebase auth
+    private lateinit var database: DatabaseReference//firebase realtime
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +34,12 @@ class LoginActivity : AppCompatActivity() {
         //register onclick
         binding.txtRegister.setOnClickListener {
             startActivity(Intent(this,RegisterActivity::class.java))
-
+            finish()
         }
 
         binding.btnSignIn.setOnClickListener{
                doLogin()
+
         }
 
     }
@@ -43,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun doLogin(){
         val email = binding.editTxtEmail
-        val password = binding.editTxtPassword;
+        val password = binding.editTxtPassword
 
         if(email.text.toString().isEmpty()){
             email.error = "Please enter Email"
@@ -85,10 +89,28 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser : FirebaseUser?){
+
         if(currentUser != null){
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
+
+//     fun checkUser() : Boolean{
+//         var isAdmin : Boolean = false
+//        database = Firebase.database.reference // reference to database
+//         val userId = FirebaseAuth.getInstance().currentUser.uid// pk
+//
+//        database.child("users").child(userId).child("type").get().addOnSuccessListener {
+//            if(((it.value).toString()).equals("admin")){
+//                isAdmin = true
+//            }
+//            Log.e("firebase", "Error getting data", $it.value)
+//        }.addOnFailureListener{
+//            Log.e("firebase", "Error getting data", it)
+//        }
+//         return isAdmin
+//    }
 
     private fun isValidPassword(password: String?): Boolean {
         val pattern: Pattern

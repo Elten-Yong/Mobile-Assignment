@@ -17,6 +17,7 @@ class infoCenter : Fragment() {
         fun newInstance() = infoCenter()
     }
 
+
     private lateinit var viewModel: InfoCenterViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
