@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidassignment.databinding.AddPostActivityBinding
 import kotlinx.android.synthetic.main.add_post_activity.*
-import java.net.URL
 
 class addPostActivity : AppCompatActivity() {
 
@@ -38,7 +37,20 @@ class addPostActivity : AppCompatActivity() {
     }
 
     private fun submitPost(){
+        val subject = binding.subject
+        val text = binding.userPost
 
+        if(subject.text.isEmpty()){
+            subject.error = "Please enter your subject"
+            subject.requestFocus()
+            return
+        }
+
+        if(text.text.isEmpty()){
+            text.error = "Please enter your subject"
+            text.requestFocus()
+            return
+        }
     }
 
     private fun choosePic(){
