@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val infoFragment = infoCenter()
+        val infoFragment = admin_info_center()
         val profileFragment = profile()
         val communityFragment = CommunityActivity()
 
