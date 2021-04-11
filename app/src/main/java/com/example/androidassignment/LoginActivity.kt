@@ -74,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
                     updateUI(user)
+
                 } else {
                     Toast.makeText(
                         baseContext, "Sign In Failed",
@@ -87,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUI(currentUser : FirebaseUser?){
         if(currentUser != null){
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

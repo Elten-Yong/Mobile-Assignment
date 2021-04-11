@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidassignment.databinding.AddPostActivityBinding
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
+import java.util.*
 
 class addPostActivity : AppCompatActivity() {
 
@@ -26,9 +28,7 @@ class addPostActivity : AppCompatActivity() {
 
         }
 
-        binding.cancelAction.setOnClickListener {
 
-        }
 
         binding.upload.setOnClickListener{
             choosePic();
@@ -51,6 +51,7 @@ class addPostActivity : AppCompatActivity() {
             text.requestFocus()
             return
         }
+        return
     }
 
     private fun choosePic(){
@@ -67,5 +68,14 @@ class addPostActivity : AppCompatActivity() {
             var bitmap = MediaStore.Images.Media.getBitmap(contentResolver,filepath)
             imageView.setImageBitmap(bitmap)
         }
+    }
+
+    private fun uploadImageToFirebaseStorage(){
+        if (filepath == null) return
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+        ref.putFile(filepath)
+
+
     }
 }

@@ -21,7 +21,7 @@
     <EditText
         android:id="@+id/user_post"
         android:layout_width="match_parent"
-        android:layout_height="262dp"
+        android:layout_height="208dp"
         android:layout_marginBottom="72dp"
         android:gravity="top|start"
         android:hint="Write Your Post Here ..."

@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         //login text onclick
         binding.txtLogIn.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
-
+            finish()
         }
 
         // signup btn onlick
