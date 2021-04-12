@@ -9,7 +9,6 @@ import com.example.androidassignment.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -19,7 +18,6 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding // viewbinding
     private lateinit var auth: FirebaseAuth // firebase auth
-    private lateinit var database: DatabaseReference//firebase realtime
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +38,11 @@ class LoginActivity : AppCompatActivity() {
         binding.btnSignIn.setOnClickListener{
                doLogin()
 
+        }
+
+        binding.txtForgetPassword.setOnClickListener{
+            startActivity(Intent(this, ForgetPasswordActivity::class.java))
+            finish()
         }
 
     }

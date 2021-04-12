@@ -6,7 +6,7 @@
     <string name="button">Button</string>
     <string name="cancel">Cancel</string>
     <string name="signup">SignUp</string>
-    <string name="login">Log In</string>
+    <string name="login">LogIn</string>
     <string name="ForgetPassword">Forget Password</string>
     <string name="community">Community</string>
     <string name="header">Header</string>
@@ -20,4 +20,6 @@
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
     <string name="people">people</string>
+    <string name="submit">Submit</string>
+    <string name="forgetpassword">ForgetPassword</string>
 </resources>
