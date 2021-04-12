@@ -6,7 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidassignment.databinding.CreatePostFragmentBinding
+import com.example.androidassignment.databinding.CreatePostActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -18,7 +18,7 @@ import java.util.*
 
 class CreatePostActivity() : AppCompatActivity() {
 
-    lateinit var binding: CreatePostFragmentBinding
+    lateinit var binding: CreatePostActivityBinding
     lateinit var filepath: Uri
 
     private lateinit var auth: FirebaseAuth // Authentication
@@ -26,11 +26,11 @@ class CreatePostActivity() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.create_post_fragment)
+        setContentView(R.layout.create_post_activity)
 
         auth = Firebase.auth //initialise firebase auth object
 
-        binding = CreatePostFragmentBinding.inflate(layoutInflater)
+        binding = CreatePostActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.Submit.setOnClickListener {
@@ -38,8 +38,7 @@ class CreatePostActivity() : AppCompatActivity() {
         }
 
         binding.Cancel.setOnClickListener {
-            startActivity(Intent(this, CommunityActivity::class.java)) // navigate to community page
-            //finish()
+            super.onBackPressed()
         }
 
         binding.Upload.setOnClickListener{
@@ -73,8 +72,7 @@ class CreatePostActivity() : AppCompatActivity() {
         val postId = database.push().key
         database.child("users").child(userId).child("posts").child(postId.toString()).setValue(post)
 
-        startActivity(Intent(this, CommunityActivity::class.java)) // navigate to community page
-        finish()
+        val intent= Intent(this, CommunityActivity::class.java)
     }
 
     private fun choosePic(){
