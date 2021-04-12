@@ -8,23 +8,24 @@
 
 
     <EditText
-        android:id="@+id/subject"
+        android:id="@+id/TopicInput"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="120dp"
         android:layout_marginBottom="28dp"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/user_post"
-        app:layout_constraintStart_toStartOf="parent"
-        android:hint="Write Your Subject Here ..."/>
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/DescriptionInput"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/user_post"
+        android:id="@+id/DescriptionInput"
         android:layout_width="match_parent"
-        android:layout_height="208dp"
+        android:layout_height="262dp"
+        android:layout_marginStart="120dp"
         android:layout_marginBottom="72dp"
         android:gravity="top|start"
-        android:hint="Write Your Post Here ..."
         android:inputType="textMultiLine"
         android:maxLines="9"
         android:paddingLeft="10dp"
@@ -38,31 +39,32 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="44dp"
+        android:layout_marginBottom="16dp"
         android:text="Submit"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_post"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionInput"
         app:layout_constraintVertical_bias="0.111" />
 
     <Button
-        android:id="@+id/delete_action"
+        android:id="@+id/Cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
+        android:text="Cancel"
         android:textColor="@color/white"
-        android:text="Delete"
-        app:layout_constraintEnd_toStartOf="@+id/submit"
-        app:layout_constraintTop_toBottomOf="@+id/user_post" />
+        app:layout_constraintEnd_toStartOf="@+id/Submit"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionInput" />
 
     <Button
-        android:id="@+id/upload"
+        android:id="@+id/Upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -78,9 +80,35 @@
         android:layout_height="141dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/subject"
+        app:layout_constraintBottom_toTopOf="@+id/TopicInput"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/Topic"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="Topic :"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/Description"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="264dp"
+        android:gravity="center"
+        android:text="Description :"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

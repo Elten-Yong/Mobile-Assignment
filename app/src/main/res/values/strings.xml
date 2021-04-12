@@ -8,6 +8,7 @@
     <string name="signup">SignUp</string>
     <string name="login">Log In</string>
     <string name="ForgetPassword">Forget Password</string>
+    <string name="community">Community</string>
     <string name="header">Header</string>
     <string name="username">Username :</string>
     <string name="password">Password :</string>

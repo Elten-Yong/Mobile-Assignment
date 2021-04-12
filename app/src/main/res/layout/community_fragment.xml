@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".infoCenter">
-
+    android:layout_height="match_parent">
     <EditText
-        android:id="@+id/search_bar"
+        android:id="@+id/Search_bar"
         android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -22,15 +19,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="432dp"
+        android:layout_height="476dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="@id/search_bar"
+        android:layout_alignParentTop="@id/Search_bar"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="-4dp" />
 
     <Button
-        android:id="@+id/recent"
+        android:id="@+id/WritePost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -38,11 +35,11 @@
         android:layout_marginStart="59dp"
         android:layout_marginTop="127dp"
         android:layout_marginBottom="101dp"
-        android:text="Recent Post"
+        android:text="Write Post"
         android:textColor="@color/white"/>
 
     <Button
-        android:id="@+id/most_view"
+        android:id="@+id/EditPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -50,12 +47,8 @@
         android:layout_marginStart="240dp"
         android:layout_marginTop="127dp"
         android:layout_marginBottom="101dp"
-        android:text="Most View"
+        android:text="Edit Post"
         android:textColor="@color/white"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="normal" />
+
 </RelativeLayout>

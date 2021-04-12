@@ -5,57 +5,60 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidassignment.databinding.AddPostActivityBinding
+import com.example.androidassignment.databinding.CreatePostFragmentBinding
+import com.example.androidassignment.databinding.ManagePostFragmentBinding
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
 import java.util.*
 
-class addPostActivity : AppCompatActivity() {
+class ManagePostActivity : AppCompatActivity() {
 
-    lateinit var binding: AddPostActivityBinding
+    lateinit var binding: ManagePostFragmentBinding
     lateinit var filepath: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.add_post_activity)
+        setContentView(R.layout.manage_post_fragment)
 
-        binding = AddPostActivityBinding.inflate(layoutInflater)
+        binding = ManagePostFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.submit.setOnClickListener {
+        binding.Submit.setOnClickListener {
             submitPost()
 
         }
 
+        binding.Delete.setOnClickListener {
 
-
-        binding.upload.setOnClickListener{
-            choosePic();
         }
 
+        binding.Upload.setOnClickListener{
+            choosePic();
+        }
     }
 
     private fun submitPost(){
-        val subject = binding.subject
-        val text = binding.userPost
+        val topic = binding.Topic
+        val description = binding.Description
 
-        if(subject.text.isEmpty()){
-            subject.error = "Please enter your subject"
-            subject.requestFocus()
+        if(topic.text.isEmpty()){
+            topic.error = "Please enter the topic"
+            topic.requestFocus()
             return
         }
 
-        if(text.text.isEmpty()){
-            text.error = "Please enter your subject"
-            text.requestFocus()
+        if(description.text.isEmpty()){
+            description.error = "Please enter the description"
+            description.requestFocus()
             return
         }
-        return
     }
 
     private fun choosePic(){
-        var image = Intent()
+        val image = Intent()
         image.setType("image/*")
         image.setAction(Intent.ACTION_GET_CONTENT)
         startActivityForResult(Intent.createChooser(image, "Choose Picture"), 111)
@@ -65,7 +68,7 @@ class addPostActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 111 && resultCode == Activity.RESULT_OK && data != null){
             filepath = data.data!!
-            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver,filepath)
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,filepath)
             imageView.setImageBitmap(bitmap)
         }
     }
@@ -75,7 +78,5 @@ class addPostActivity : AppCompatActivity() {
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
         ref.putFile(filepath)
-
-
     }
 }
