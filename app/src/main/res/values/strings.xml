@@ -15,11 +15,26 @@
     <string name="leejunxian">LeeJunXian</string>
     <string name="Password">Password</string>
     <string name="plcEmail">diunasing@gmail.com</string>
-    <string name="email_address">Email Address:</string>
     <string name="confirm_password">Confirm Password:</string>
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
+
+    <string name="email_address">Email Address :</string>
     <string name="people">people</string>
     <string name="submit">Submit</string>
     <string name="forgetpassword">ForgetPassword</string>
+    <string name="account_informations">Account Informations</string>
+    <string name="email">Email :</string>
+    <string name="emailicon">emailIcon</string>
+    <string name="profilepicture">ProfilePicture</string>
+    <string name="phoneicon">phoneIcon</string>
+    <string name="bankcard">BankCard</string>
+    <string name="phone">Phone :</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="BankCard">BankCard :</string>
+    <string name="edit">Edit</string>
+    <string name="history">history</string>
+    <string name="info">info</string>
+    <string name="bookmark">bookmark</string>
+    <string name="user">User</string>
 </resources>
