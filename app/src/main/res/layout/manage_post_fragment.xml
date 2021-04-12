@@ -8,23 +8,23 @@
 
 
     <EditText
-        android:id="@+id/subject"
+        android:id="@+id/Topic"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="28dp"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/user_post"
+        app:layout_constraintBottom_toTopOf="@+id/Description"
         app:layout_constraintStart_toStartOf="parent"
-        android:hint="Write Your Subject Here ..."/>
+        android:hint="Change topic ..."/>
 
     <EditText
-        android:id="@+id/user_post"
-        android:layout_width="match_parent"
-        android:layout_height="208dp"
+        android:id="@+id/Description"
+        android:layout_width="404dp"
+        android:layout_height="216dp"
         android:layout_marginBottom="72dp"
         android:gravity="top|start"
-        android:hint="Write Your Post Here ..."
+        android:hint="Change description ..."
         android:inputType="textMultiLine"
         android:maxLines="9"
         android:paddingLeft="10dp"
@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -47,22 +47,22 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_post"
+        app:layout_constraintTop_toBottomOf="@+id/Description"
         app:layout_constraintVertical_bias="0.111" />
 
     <Button
-        android:id="@+id/delete_action"
+        android:id="@+id/Delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:textColor="@color/white"
         android:text="Delete"
-        app:layout_constraintEnd_toStartOf="@+id/submit"
-        app:layout_constraintTop_toBottomOf="@+id/user_post" />
+        app:layout_constraintEnd_toStartOf="@+id/Submit"
+        app:layout_constraintTop_toBottomOf="@+id/Description" />
 
     <Button
-        android:id="@+id/upload"
+        android:id="@+id/Upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
