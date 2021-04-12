@@ -6,31 +6,40 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidassignment.databinding.AddPostActivityBinding
 import com.example.androidassignment.databinding.CreatePostFragmentBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
 import java.util.*
 
-class CreatePostActivity : AppCompatActivity() {
+class CreatePostActivity() : AppCompatActivity() {
 
     lateinit var binding: CreatePostFragmentBinding
     lateinit var filepath: Uri
 
+    private lateinit var auth: FirebaseAuth // Authentication
+    private lateinit var database: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_post_fragment)
+
+        auth = Firebase.auth //initialise firebase auth object
 
         binding = CreatePostFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.Submit.setOnClickListener {
             submitPost()
-
         }
 
         binding.Cancel.setOnClickListener {
-
+            startActivity(Intent(this, CommunityActivity::class.java)) // navigate to community page
+            //finish()
         }
 
         binding.Upload.setOnClickListener{
@@ -54,6 +63,18 @@ class CreatePostActivity : AppCompatActivity() {
             description.requestFocus()
             return
         }
+
+        database = Firebase.database.reference // reference to database
+        val userId = FirebaseAuth.getInstance().currentUser.uid// pk
+
+        //Save into database
+        val post = UserPost(topic, description) //user class
+
+        val postId = database.push().key
+        database.child("users").child(userId).child("posts").child(postId.toString()).setValue(post)
+
+        startActivity(Intent(this, CommunityActivity::class.java)) // navigate to community page
+        finish()
     }
 
     private fun choosePic(){

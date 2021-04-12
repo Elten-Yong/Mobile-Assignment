@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(){
         val adminInfoFragment = admin_info_center()
         val profileFragment = profile()
         val infoFragment = infoCenter()
+        val communityFragment = CommunityActivity()
 
         database = Firebase.database.reference // reference to database
 
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity(){
                     when (it.itemId){
                         R.id.infoCenter -> makeCurrentFragment(adminInfoFragment)
                         R.id.profile -> makeCurrentFragment(profileFragment)
+                        R.id.CommunityActivity -> makeCurrentFragment(communityFragment)
                     }
                     true
                 }
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity(){
                     when (it.itemId){
                         R.id.infoCenter -> makeCurrentFragment(infoFragment)
                         R.id.profile -> makeCurrentFragment(profileFragment)
+                        R.id.CommunityActivity -> makeCurrentFragment(communityFragment)
                     }
                     true
                 }
@@ -57,10 +60,7 @@ class MainActivity : AppCompatActivity(){
         }
 
 
-
-
     }
-
 
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
