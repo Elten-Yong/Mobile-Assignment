@@ -37,7 +37,6 @@ class ForgetPasswordActivity : AppCompatActivity() {
             doReset()
 
         }
-
     }
 
     private fun doReset(){
