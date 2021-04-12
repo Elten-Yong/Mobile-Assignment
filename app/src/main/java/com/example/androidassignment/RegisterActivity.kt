@@ -44,6 +44,13 @@ class RegisterActivity : AppCompatActivity() {
 
         }
 
+        //forget password onclick
+
+        binding.txtForgetPassword.setOnClickListener{
+            startActivity(Intent(this, ForgetPasswordActivity::class.java))
+            finish()
+        }
+
     }
 
     private fun signUp(){
