@@ -128,7 +128,9 @@ class RegisterActivity : AppCompatActivity() {
     fun writeNewUser(userId: String, name: String, email: String) {
 
         val type = "normal"
-        val user = User(name, email,type) //user class
+
+        //variable  //user class
+        val user = User(name, email,type)
 
         database.child("users").child(userId).setValue(user)
 
