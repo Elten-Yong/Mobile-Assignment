@@ -14,8 +14,7 @@
         android:layout_marginStart="120dp"
         android:layout_marginBottom="28dp"
         android:inputType="text"
-        android:textAlignment="center"
-        android:gravity="center"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toTopOf="@+id/DescriptionInput"
         app:layout_constraintStart_toStartOf="parent" />
 

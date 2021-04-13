@@ -5,25 +5,23 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidassignment.databinding.CreatePostFragmentBinding
-import com.example.androidassignment.databinding.ManagePostFragmentBinding
+import com.example.androidassignment.databinding.CreatePostActivityBinding
+import com.example.androidassignment.databinding.ManagePostActivityBinding
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
 import java.util.*
 
 class ManagePostActivity : AppCompatActivity() {
 
-    lateinit var binding: ManagePostFragmentBinding
+    lateinit var binding: ManagePostActivityBinding
     lateinit var filepath: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.manage_post_fragment)
+        setContentView(R.layout.manage_post_activity)
 
-        binding = ManagePostFragmentBinding.inflate(layoutInflater)
+        binding = ManagePostActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.Submit.setOnClickListener {

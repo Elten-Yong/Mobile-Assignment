@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.androidassignment.databinding.CommunityFragmentBinding
 import android.content.Intent
 import android.widget.Button
-import com.example.androidassignment.databinding.ActivityLoginBinding
 
 class CommunityActivity : Fragment() {
 

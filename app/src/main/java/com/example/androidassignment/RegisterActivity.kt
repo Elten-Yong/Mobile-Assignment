@@ -14,8 +14,6 @@ import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-
-
 class RegisterActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityRegisterBinding // viewbinding

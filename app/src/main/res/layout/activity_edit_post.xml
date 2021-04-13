@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/subject"
+        android:id="@+id/subjectList"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="4dp"
@@ -16,7 +16,8 @@
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/user_post"
         app:layout_constraintStart_toStartOf="parent"
-        android:hint="Write Your Subject Here ..."/>
+        android:hint="@string/enter_your_text"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/user_post"
@@ -24,7 +25,7 @@
         android:layout_height="216dp"
         android:layout_marginBottom="72dp"
         android:gravity="top|start"
-        android:hint="Write Your Post Here ..."
+        android:text=""
         android:inputType="textMultiLine"
         android:maxLines="9"
         android:paddingLeft="10dp"
@@ -35,7 +36,9 @@
         android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:hint="@string/enter_your_text"
+        android:importantForAutofill="no"/>
 
     <Button
         android:id="@+id/submit"
@@ -48,7 +51,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_post"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.111"
+        />
 
     <Button
         android:id="@+id/delete_action"
@@ -76,9 +80,8 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="141dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/subject"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toTopOf="@+id/subjectList"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="VectorDrawableCompat" />
