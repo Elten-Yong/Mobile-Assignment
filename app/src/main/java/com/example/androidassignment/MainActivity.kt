@@ -34,4 +34,6 @@ class MainActivity : AppCompatActivity(){
             replace(R.id.fl_wrapper, fragment)
             commit()
         }
+
+
 }

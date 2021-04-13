@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/subject"
+        android:id="@+id/subjectList"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="4dp"
@@ -78,7 +78,7 @@
         android:layout_height="141dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/subject"
+        app:layout_constraintBottom_toTopOf="@+id/subjectList"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="VectorDrawableCompat" />
