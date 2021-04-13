@@ -20,6 +20,25 @@
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
     <string name="people">people</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="enter_your_text">Enter Text</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="history">History</string>
+    <string name="edit">Info</string>
+    <string name="info">Info</string>
+    <string name="email">Email :</string>
+    <string name="user">User</string>
+    <string name="phone">Phone :</string>
+    <string name="emailicon">EmailIcon</string>
     <string name="submit">Submit</string>
-    <string name="forgetpassword">ForgetPassword</string>
+    <string name="BankCard">Bank Card :</string>
+    <string name="bankcard">Bank Card :</string>
+    <string name="phoneicon">Phone Icon</string>
+    <string name="forgetpassword">Forget Password</string>
+
+    <string name="profilepicture">Profile Pciture</string>
+    <string name="account_informations">Account Information</string>
+    <string name="phone_number">Phone Number :</string>
+    <string name="comfirm">Comfirm</string>
+
 </resources>
