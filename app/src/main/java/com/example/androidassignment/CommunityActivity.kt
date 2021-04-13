@@ -7,27 +7,56 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.androidassignment.databinding.CommunityFragmentBinding
+import android.content.Intent
+import android.widget.Button
 
 class CommunityActivity : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+
+        }
+    }
 
     private var _binding: CommunityFragmentBinding? = null
     private val binding get() = _binding!!
 
-    companion object {
+    /*companion object {
         fun newInstance() = CommunityActivity()
-    }
 
-    private lateinit var viewModel: CommunityViewModel
+
+    private lateinit var viewModel: CommunityViewModel */
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.community_fragment, container, false)
+        savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        _binding = CommunityFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+
+        binding.WritePost.setOnClickListener{
+            val intent= Intent(getActivity(), CreatePostActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
+
+        binding.EditPost.setOnClickListener{
+            val intent= Intent(getActivity(), ManagePostActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
+
+        return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CommunityViewModel::class.java)
         // TODO: Use the ViewModel
-    }
-
+    }*/
 }
+
