@@ -67,6 +67,10 @@ class admin_info_center : Fragment() {
 
     }
 
+    companion object{
+        val POST_KEY = "POST_KEY"
+    }
+
     private fun fetchPostData(){
         val ref = FirebaseDatabase.getInstance().getReference("post")
         ref.addListenerForSingleValueEvent(object: ValueEventListener{
@@ -82,7 +86,9 @@ class admin_info_center : Fragment() {
                 }
 
                 adapter.setOnItemClickListener { item, view ->
+                    val postItem = item as PostItem
                     val intent= Intent(view.context, EditPostActivity::class.java)
+                    intent.putExtra(POST_KEY, postItem.post)
                     getActivity()?.startActivity(intent)
                 }
                 binding.recyclerViewAdminInfo.adapter = adapter

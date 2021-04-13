@@ -43,12 +43,11 @@ android {
 }
 
 dependencies {
+
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.xwray:groupie:2.9.0'
     implementation "com.xwray:groupie-kotlin-android-extensions:2.9.0"
-    implementation 'com.google.firebase:firebase-auth:20.0.4'
-    implementation 'com.google.firebase:firebase-storage-ktx:19.2.2'
-    implementation 'com.google.firebase:firebase-storage:19.2.2'
+
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
     implementation 'com.android.support:multidex:1.0.3'
@@ -63,19 +62,23 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'com.google.firebase:firebase-database'
-    implementation 'com.google.firebase:firebase-firestore:22.1.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
     implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
+
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    //firebase
     implementation platform('com.google.firebase:firebase-bom:26.8.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
-    implementation "androidx.recyclerview:recyclerview:1.2.0"
-    // For control over item selection of both touch and mouse driven selection
-    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-core'
+    implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation 'com.google.firebase:firebase-storage-ktx:19.2.2'
 }
 
 apply plugin:'com.google.gms.google-services'
