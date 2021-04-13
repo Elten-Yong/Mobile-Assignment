@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidassignment.databinding.CreatePostActivityBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +16,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class CreatePostActivity() : AppCompatActivity() {
@@ -22,7 +25,9 @@ class CreatePostActivity() : AppCompatActivity() {
     lateinit var filepath: Uri
 
     private lateinit var auth: FirebaseAuth // Authentication
-    private lateinit var database: DatabaseReference
+    private lateinit var database: DatabaseReference //Reference
+
+    var photo: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +39,7 @@ class CreatePostActivity() : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.Submit.setOnClickListener {
-            submitPost()
+            addPost()
         }
 
         binding.Cancel.setOnClickListener {
@@ -42,14 +47,20 @@ class CreatePostActivity() : AppCompatActivity() {
         }
 
         binding.Upload.setOnClickListener{
-            choosePic();
+            selectPhoto();
         }
 
     }
 
-    private fun submitPost(){
+    private fun addPost(){
         val topic = binding.TopicInput
         val description = binding.DescriptionInput
+        /*val pic = binding.imageView
+
+        if(pic.drawable == null){
+            pic.requestFocus()
+            return
+        }*/
 
         if(topic.text.isEmpty()){
             topic.error = "Please enter the topic"
@@ -63,22 +74,34 @@ class CreatePostActivity() : AppCompatActivity() {
             return
         }
 
-        database = Firebase.database.reference // reference to database
-        val userId = FirebaseAuth.getInstance().currentUser.uid// pk
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/user's post/$filename")
+        ref.putFile(filepath).addOnSuccessListener(this) {
+            Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")
+            ref.downloadUrl.addOnSuccessListener {
+                photo = it.toString()
+                Log.d("upload", "File Location:$it")
+                //database = Firebase.database.reference // reference to database
 
-        //Save into database
-        val post = UserPost(topic, description) //user class
+                val userID = FirebaseAuth.getInstance().currentUser.uid
+                val ref1 = FirebaseDatabase.getInstance().getReference("users/$userID")
+                val postId = ref1.push().key
+                val post = UserPost(topic.text.toString(), description.text.toString(), photo.toString())
 
-        val postId = database.push().key
-        database.child("users").child(userId).child("posts").child(postId.toString()).setValue(post)
+                ref1.child("posts").child(postId.toString()).setValue(post)
 
-        val intent= Intent(this, CommunityActivity::class.java)
+                Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
+                finish()
+            }
+        }.addOnFailureListener {}
+
+        return
     }
 
-    private fun choosePic(){
+    private fun selectPhoto(){
         val image = Intent()
-        image.setType("image/*")
-        image.setAction(Intent.ACTION_GET_CONTENT)
+        image.type = "image/*"
+        image.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(image, "Choose Picture"), 111)
     }
 
@@ -91,10 +114,4 @@ class CreatePostActivity() : AppCompatActivity() {
         }
     }
 
-    private fun uploadImageToFirebaseStorage(){
-        if (filepath == null) return
-        val filename = UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
-        ref.putFile(filepath)
-    }
 }

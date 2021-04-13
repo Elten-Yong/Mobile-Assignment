@@ -8,7 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.androidassignment.databinding.CommunityFragmentBinding
 import android.content.Intent
+import android.util.Log
 import android.widget.Button
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
+import kotlinx.android.synthetic.main.create_post_activity.view.*
+import kotlinx.android.synthetic.main.user_posts.view.*
+
 
 class CommunityActivity : Fragment() {
 
@@ -45,6 +57,11 @@ class CommunityActivity : Fragment() {
             getActivity()?.startActivity(intent)
         }
 
+        val adapter = GroupAdapter<GroupieViewHolder>()
+
+        binding.recyclerViewUserPost.adapter = adapter
+        fetchPostData()
+
         return view
     }
 
@@ -58,5 +75,44 @@ class CommunityActivity : Fragment() {
         viewModel = ViewModelProvider(this).get(CommunityViewModel::class.java)
         // TODO: Use the ViewModel
     }*/
+
+    private fun fetchPostData(){
+        val ref = FirebaseDatabase.getInstance().getReference("users")
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val adapter = GroupAdapter<GroupieViewHolder>()
+                snapshot.children.forEach{
+                    Log.d("posting", it.toString())
+                    val post= it.getValue(UserPost::class.java)
+                    if(post != null){
+                        adapter.add(PostItem(post))
+                    }
+                }
+
+                adapter.setOnItemClickListener { _, view ->
+                    val intent= Intent(view.context, ManagePostActivity::class.java)
+                    activity?.startActivity(intent)
+                }
+                binding.recyclerViewUserPost.adapter = adapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    class PostItem(val post:UserPost): Item<GroupieViewHolder>() {
+
+        override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+            viewHolder.itemView.TopicEx.text = post.topic
+            Picasso.get().load(post.photoUpload).into(viewHolder.itemView.postImage)
+        }
+
+        override fun getLayout(): Int {
+            return R.layout.user_posts
+        }
+    }
 }
 
