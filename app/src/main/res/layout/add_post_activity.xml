@@ -13,10 +13,10 @@
         android:layout_height="70dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="28dp"
+        android:hint="Write Your Subject Here ..."
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/user_post"
-        app:layout_constraintStart_toStartOf="parent"
-        android:hint="Write Your Subject Here ..."/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/user_post"
