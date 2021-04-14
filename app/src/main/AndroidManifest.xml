@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssignment">
-        <activity android:name=".EditPostActivity2"></activity>
+        <activity android:name=".activity_card_information"></activity>
+        <activity android:name=".activity_donationMethod" />
+        <activity android:name=".activity_donation_type" />
+        <activity android:name=".EditPostActivity2" />
         <activity android:name=".LookPostActivity" />
         <activity
             android:name=".RegisterActivity"
