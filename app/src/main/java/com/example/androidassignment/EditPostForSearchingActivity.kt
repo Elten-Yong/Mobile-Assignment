@@ -7,20 +7,20 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidassignment.databinding.ActivityEditPostBinding
+import com.example.androidassignment.databinding.ActivityEditPostForSearchingBinding
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_edit_post.*
 import java.util.*
 
+class EditPostForSearchingActivity : AppCompatActivity() {
 
-class EditPostActivity : AppCompatActivity() {
-
-
-
-    lateinit var binding: ActivityEditPostBinding
+    lateinit var binding: ActivityEditPostForSearchingBinding
     var filepath: Uri? = null
     var SelectedImages: String? = null
     lateinit var postId: String
@@ -29,38 +29,40 @@ class EditPostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_post)
+        setContentView(R.layout.activity_edit_post_for_searching)
+        setSupportActionBar(findViewById(R.id.toolbar))
         val actionBar = supportActionBar
 
         actionBar!!.title = "Edit Post"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-        binding = ActivityEditPostBinding.inflate(layoutInflater)
+        binding = ActivityEditPostForSearchingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val intent = getIntent();
+        val activity = intent.getStringExtra("view.context")
+        Log.d("Testing", "From the last slide: $activity")
 
-
-        val post = intent.getParcelableExtra<information>(admin_info_center.POST_KEY)
+        val post = intent.getParcelableExtra<information>(PostSearchingActivity.POST_KEY)
 
 
         if (post != null) {
             postId = post.postID
             imageUrl = post.photoUpload
             Picasso.get().load(post.photoUpload).into(binding.imageView)
-           binding.subjectList.setText(post.subject)
-           binding.userPost.setText(post.contentPost)
+            binding.subjectList.setText(post.subject)
+            binding.userPost.setText(post.contentPost)
         }
 
         binding.submit.setOnClickListener{
             if(changedOnphoto != 0) {
+
                 updateDatabase()
             }else {
                 updateDatabaseWithoutPhoto()
             }
 
             if(binding.subjectList.text!= null && binding.userPost.text != null){
-                finish();
-
+                finish()
             }
         }
 
@@ -188,6 +190,5 @@ class EditPostActivity : AppCompatActivity() {
         ref.child(postID).setValue(post)
         Toast.makeText(applicationContext, "Succesfully updated", Toast.LENGTH_LONG).show()
     }
-
 
 }
