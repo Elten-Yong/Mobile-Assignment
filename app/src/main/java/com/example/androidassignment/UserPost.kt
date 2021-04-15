@@ -1,19 +1,20 @@
 package com.example.androidassignment
 
-import android.widget.EditText
-import com.google.firebase.database.IgnoreExtraProperties
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-//@IgnoreExtraProperties
-class UserPost( topic: String, description: String, photoUpload: String) {
-    var topic: String? = null
+@Parcelize
+class UserPost(var topic: String, var description: String, var photoUpload: String, var userID: String) : Parcelable {
+    /*var topic: String? = null
     var description: String? = null
-    var photoUpload: String? = null
+    var photoUpload: String? = null*/
 
-    constructor():this("","","")
+    constructor():this("","","","")
 
-    init {
+    /*init {
         this.topic = topic
         this.description = description
         this.photoUpload = photoUpload
-    }
+        this.userID = userID
+    }*/
 }

@@ -6,16 +6,16 @@
 
 
     <ImageView
-        android:id="@+id/postImage"
+        android:id="@+id/postPic"
         android:layout_width="match_parent"
         android:layout_height="173dp"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/TopicEx"
+        android:id="@+id/topic"
         android:layout_width="wrap_content"
         android:layout_height="40sp"
-        android:layout_below="@+id/postImage"
+        android:layout_below="@+id/postPic"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="15dp"

@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidassignment.databinding.CreatePostActivityBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
@@ -32,6 +31,7 @@ class CreatePostActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_post_activity)
+        supportActionBar?.title = "Add a post"
 
         auth = Firebase.auth //initialise firebase auth object
 
@@ -55,12 +55,12 @@ class CreatePostActivity() : AppCompatActivity() {
     private fun addPost(){
         val topic = binding.TopicInput
         val description = binding.DescriptionInput
-        /*val pic = binding.imageView
 
-        if(pic.drawable == null){
-            pic.requestFocus()
+        if(imageView.drawable ==null){
+            Toast.makeText(applicationContext, "Please select a picture", Toast.LENGTH_LONG).show()
+            imageView.requestFocus()
             return
-        }*/
+        }
 
         if(topic.text.isEmpty()){
             topic.error = "Please enter the topic"
@@ -84,11 +84,11 @@ class CreatePostActivity() : AppCompatActivity() {
                 //database = Firebase.database.reference // reference to database
 
                 val userID = FirebaseAuth.getInstance().currentUser.uid
-                val ref1 = FirebaseDatabase.getInstance().getReference("users/$userID")
-                val postId = ref1.push().key
-                val post = UserPost(topic.text.toString(), description.text.toString(), photo.toString())
+                val ref1 = FirebaseDatabase.getInstance().getReference("user post")
+                val postID = ref1.push().key
+                val post = UserPost(topic.text.toString(), description.text.toString(), photo.toString(), userID.toString())
 
-                ref1.child("posts").child(postId.toString()).setValue(post)
+                ref1.child(postID.toString()).setValue(post)
 
                 Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
                 finish()

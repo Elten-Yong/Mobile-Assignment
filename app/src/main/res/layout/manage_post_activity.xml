@@ -8,18 +8,18 @@
 
 
     <EditText
-        android:id="@+id/Topic"
+        android:id="@+id/topic"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="28dp"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/Description"
+        app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintStart_toStartOf="parent"
         android:hint="Change topic ..."/>
 
     <EditText
-        android:id="@+id/Description"
+        android:id="@+id/description"
         android:layout_width="404dp"
         android:layout_height="216dp"
         android:layout_marginBottom="72dp"
@@ -47,7 +47,7 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Description"
+        app:layout_constraintTop_toBottomOf="@+id/description"
         app:layout_constraintVertical_bias="0.111" />
 
     <Button
@@ -59,7 +59,7 @@
         android:textColor="@color/white"
         android:text="Delete"
         app:layout_constraintEnd_toStartOf="@+id/Submit"
-        app:layout_constraintTop_toBottomOf="@+id/Description" />
+        app:layout_constraintTop_toBottomOf="@+id/description" />
 
     <Button
         android:id="@+id/Upload"
@@ -78,7 +78,7 @@
         android:layout_height="141dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/subject"
+        app:layout_constraintBottom_toTopOf="@id/topic"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="VectorDrawableCompat" />
