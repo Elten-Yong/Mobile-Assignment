@@ -30,13 +30,16 @@ class addPostActivity : AppCompatActivity() {
 
         binding.submit.setOnClickListener {
             submitPost()
-            finish()
+
+            if(binding.subjectList.text!= null && binding.userPost.text != null){
+                finish()
+            }
+
         }
 
         binding.upload.setOnClickListener{
             choosePic();
         }
-
 
     }
 
@@ -77,8 +80,32 @@ class addPostActivity : AppCompatActivity() {
             return
         }
 
+        if(imageView.getDrawable()==null){
+            Toast.makeText(applicationContext, "Upload your image first", Toast.LENGTH_LONG).show()
+        }
+
         val filename = UUID.randomUUID().toString()
         val ref1 = FirebaseStorage.getInstance().getReference("/images/$filename")
+        if(filepath == null) return
+        {
+            ref1.putFile(filepath!!)
+                .addOnSuccessListener {
+                    Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")
+                    ref1.downloadUrl.addOnSuccessListener {
+                        SelectedImages =  it.toString()
+                        Log.d("upload", "File Location:$it")
+                        val ref = FirebaseDatabase.getInstance().getReference("post")
+                        val postID = ref.push().key
+                        val post = information(postID.toString(), subject.text.toString(), text.text.toString(), SelectedImages.toString())
+
+                        ref.child(postID.toString()).setValue(post)
+                        Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
+                    }
+                }
+                .addOnFailureListener{
+                }
+
+        }
         ref1.putFile(filepath!!)
                 .addOnSuccessListener {
                     Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")

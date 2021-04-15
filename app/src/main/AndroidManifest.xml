@@ -14,6 +14,14 @@
         <activity android:name=".activity_donationMethod" />
         <activity android:name=".activity_donation_type" />
         <activity android:name=".EditPostActivity2" />
+        <activity android:name=".PostLayoutActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".EditPostForSearchingActivity"
+            android:label="@string/title_activity_edit_post_for_searching"
+            android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
+        <activity android:name=".PostSearchingActivity" />
+        <activity android:name=".EditPostActivity" />
         <activity android:name=".LookPostActivity" />
         <activity
             android:name=".RegisterActivity"

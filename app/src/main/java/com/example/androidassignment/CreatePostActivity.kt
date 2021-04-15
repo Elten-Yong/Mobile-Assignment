@@ -1,3 +1,4 @@
+
 package com.example.androidassignment
 
 import android.app.Activity
@@ -63,7 +64,7 @@ class CreatePostActivity() : AppCompatActivity() {
             return
         }
 
-        database = Firebase.database.reference // reference to database
+        //database = Firebase.database.reference // reference to database
         val userId = FirebaseAuth.getInstance().currentUser.uid// pk
 
         //Save into database

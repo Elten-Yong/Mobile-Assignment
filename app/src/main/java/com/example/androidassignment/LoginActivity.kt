@@ -29,6 +29,14 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        // Gets resize one
+//        val layout: ConstraintLayout = binding.root
+//// Gets the layout params that will allow you to resize the layout
+//        val params: ViewGroup.LayoutParams = layout.layoutParams
+//        params.width = 1000
+//        params.height = 1000
+//        layout.layoutParams = params
+
         //register onclick
         binding.txtRegister.setOnClickListener {
             startActivity(Intent(this,RegisterActivity::class.java))
