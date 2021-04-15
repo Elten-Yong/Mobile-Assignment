@@ -10,6 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssignment">
+        <activity android:name=".PostLayoutActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".EditPostForSearchingActivity"
+            android:label="@string/title_activity_edit_post_for_searching"
+            android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
+        <activity android:name=".PostSearchingActivity" />
         <activity android:name=".EditPostActivity" />
         <activity android:name=".LookPostActivity" />
         <activity
