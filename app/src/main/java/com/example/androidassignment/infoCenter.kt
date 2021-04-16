@@ -34,19 +34,31 @@ class infoCenter : Fragment() {
     ): View? {
         _binding = InfoCenterFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
+        val adapter = GroupAdapter<GroupieViewHolder>()
+
         binding.searchBar.setOnClickListener {
-            val intent = Intent(getActivity(), PostSearchingActivity::class.java)
+            val intent = Intent(getActivity(), PostSearchingForUserActivity::class.java)
             getActivity()?.startActivity(intent)
         }
 
         binding.searchIcon.setOnClickListener {
-            val intent = Intent(getActivity(), PostSearchingActivity::class.java)
+            val intent = Intent(getActivity(), PostSearchingForUserActivity::class.java)
             getActivity()?.startActivity(intent)
 
 
         }
 
-        val adapter = GroupAdapter<GroupieViewHolder>()
+        binding.mostView.setOnClickListener{
+            fetchPostDataMostView()
+            binding.recyclerViewAdminInfo.adapter = adapter
+        }
+
+        binding.recentPost.setOnClickListener{
+            fetchPostDataRecent()
+            binding.recyclerViewAdminInfo.adapter = adapter
+        }
+
+
 
         binding.swipeRefresh.setOnRefreshListener {
             binding.recyclerViewAdminInfo.adapter = adapter
@@ -95,9 +107,70 @@ class infoCenter : Fragment() {
         })
     }
 
+    private fun fetchPostDataMostView() {
+        val ref = FirebaseDatabase.getInstance().getReference("post").child("totalVisitor").orderByValue()
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val adapter = GroupAdapter<GroupieViewHolder>()
+                snapshot.children.forEach {
+                    Log.d("posting", it.toString())
+                    val post = it.getValue(information::class.java)
+                    if (post != null) {
+                        adapter.add(PostItem(post))
+                    }
+                }
+
+                adapter.setOnItemClickListener { item, view ->
+                    val postItem = item as PostItem
+                    val intent = Intent(view.context, PostLayoutActivity::class.java)
+                    intent.putExtra(POST_KEY, postItem.post)
+                    getActivity()?.startActivity(intent)
+                }
+                binding.recyclerViewAdminInfo.adapter = adapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+
+    private fun fetchPostDataRecent() {
+        val ref = FirebaseDatabase.getInstance().getReference("post").child("time").orderByPriority()
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val adapter = GroupAdapter<GroupieViewHolder>()
+                snapshot.children.forEach {
+                    Log.d("posting", it.toString())
+                    val post = it.getValue(information::class.java)
+                    if (post != null) {
+                        adapter.add(PostItem(post))
+                    }
+                }
+
+                adapter.setOnItemClickListener { item, view ->
+                    val postItem = item as PostItem
+                    val intent = Intent(view.context, PostLayoutActivity::class.java)
+                    intent.putExtra(POST_KEY, postItem.post)
+                    getActivity()?.startActivity(intent)
+                }
+                binding.recyclerViewAdminInfo.adapter = adapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
     class PostItem(val post: information) : Item<GroupieViewHolder>() {
 
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+            viewHolder.itemView.totalVisitor.text = post.totalVisitor
+            viewHolder.itemView.textDesc.text = post.contentPost.take(20)
             viewHolder.itemView.subjectList.text = post.subject
             Picasso.get().load(post.photoUpload).into(viewHolder.itemView.postImage)
         }

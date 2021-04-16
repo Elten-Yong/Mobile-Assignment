@@ -1,12 +1,14 @@
 package com.example.androidassignment
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidassignment.databinding.ActivityEditPostBinding
 import com.google.firebase.database.FirebaseDatabase
@@ -24,6 +26,8 @@ class EditPostActivity : AppCompatActivity() {
     var filepath: Uri? = null
     var SelectedImages: String? = null
     lateinit var postId: String
+    lateinit var time: String
+    var totalVisitor: Int = 0
     lateinit var imageUrl: String
     var changedOnphoto: Int = 0
 
@@ -44,6 +48,8 @@ class EditPostActivity : AppCompatActivity() {
 
 
         if (post != null) {
+            time = post.time
+            totalVisitor = post.totalVisitor.toInt()
             postId = post.postID
             imageUrl = post.photoUpload
             Picasso.get().load(post.photoUpload).into(binding.imageView)
@@ -60,17 +66,22 @@ class EditPostActivity : AppCompatActivity() {
 
             if(binding.subjectList.text!= null && binding.userPost.text != null){
                 finish();
-
             }
         }
 
         binding.upload.setOnClickListener{
             choosePic()
-            //post!!.subject
+
         }
 
         binding.deleteAction.setOnClickListener{
-            deletePost()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Delete")
+            builder.setMessage("Are your sure you want to delete this information post?")
+            builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int -> deletePost() }
+            builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int -> }
+            builder.show()
+
         }
 
     }
@@ -126,25 +137,7 @@ class EditPostActivity : AppCompatActivity() {
         val filename = UUID.randomUUID().toString()
         val ref1 = FirebaseStorage.getInstance().getReference("/images/$filename")
         if(filepath == null) return
-        {
-            ref1.putFile(filepath!!)
-                .addOnSuccessListener {
-                    Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")
-                    ref1.downloadUrl.addOnSuccessListener {
-                        SelectedImages =  it.toString()
-                        Log.d("upload", "File Location:$it")
-                        val ref = FirebaseDatabase.getInstance().getReference("post")
-                        val postID = ref.push().key
-                        val post = information(postID.toString(), subject.text.toString(), text.text.toString(), SelectedImages.toString())
 
-                        ref.child(postID.toString()).setValue(post)
-                        Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
-                    }
-                }
-                .addOnFailureListener{
-                }
-
-        }
         ref1.putFile(filepath!!)
             .addOnSuccessListener {
                 Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")
@@ -153,7 +146,7 @@ class EditPostActivity : AppCompatActivity() {
                     Log.d("upload", "File Location:$it")
                     val ref = FirebaseDatabase.getInstance().getReference("post")
                     val postID = postId
-                    val post = information(postID.toString(), subject.text.toString(), text.text.toString(), SelectedImages.toString())
+                    val post = information(postID.toString(), subject.text.toString(), text.text.toString(), SelectedImages.toString(), time, totalVisitor.toString())
                     ref.child(postID.toString()).setValue(post)
                     Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
                 }
@@ -184,7 +177,7 @@ class EditPostActivity : AppCompatActivity() {
         }
         val ref = FirebaseDatabase.getInstance().getReference("post")
         val postID = postId
-        val post = information(postID.toString(), subject.text.toString(), text.text.toString(), imageUrl)
+        val post = information(postID.toString(), subject.text.toString(), text.text.toString(), imageUrl, time, totalVisitor.toString())
         ref.child(postID).setValue(post)
         Toast.makeText(applicationContext, "Succesfully updated", Toast.LENGTH_LONG).show()
     }
