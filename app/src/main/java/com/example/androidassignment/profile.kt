@@ -78,7 +78,7 @@ class profile : Fragment() {
 
         binding.phoneEdit.setOnClickListener{
 
-            val intent = Intent(activity, EditPhoneNumberActivity::class.java)
+            val intent = Intent(getActivity(), EditPhoneNumberActivity::class.java)
             intent.putExtra("name", profileUserName)
             intent.putExtra("phone", profilePhoneNumber)
             intent.putExtra("photo", profilePicture)
@@ -262,7 +262,7 @@ class profile : Fragment() {
 
             filepath = data.data!!
             Log.d("profile", filepath.toString())
-            val bitmap = MediaStore.Images.Media.getBitmap(getActivity()!!.contentResolver, filepath)
+            val bitmap = MediaStore.Images.Media.getBitmap(this.getActivity()!!.contentResolver, filepath)
             Log.d("profile", bitmap.toString())
             ProfileImage.setImageBitmap(bitmap)
 
