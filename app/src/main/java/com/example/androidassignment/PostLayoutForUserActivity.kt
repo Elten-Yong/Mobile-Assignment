@@ -3,45 +3,32 @@ package com.example.androidassignment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
-import com.example.androidassignment.databinding.ActivityEditPostBinding
-import com.example.androidassignment.databinding.ActivityPostLayoutBinding
+import com.example.androidassignment.databinding.ActivityPostLayoutForUserBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_post_layout.*
-import kotlinx.android.synthetic.main.activity_post_layout.view.*
-import kotlinx.android.synthetic.main.profile_fragment.view.*
 
-class PostLayoutActivity : AppCompatActivity() {
+class PostLayoutForUserActivity : AppCompatActivity() {
 
-
-    lateinit var binding: ActivityPostLayoutBinding
+    lateinit var binding: ActivityPostLayoutForUserBinding
     lateinit var postId: String
     var fontsize: Float = 10F
     var postSubject: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_layout)
-
+        setContentView(R.layout.activity_post_layout_for_user)
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
-        binding = ActivityPostLayoutBinding.inflate(layoutInflater)
+        binding =ActivityPostLayoutForUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val intent = getIntent();
-        val post = intent.getParcelableExtra<information>(infoCenter.POST_KEY)
+        val post = intent.getParcelableExtra<information>(PostSearchingForUserActivity.POST_KEY)
         if (post != null) {
             postSubject = post.subject
             postId = post.postID
@@ -55,7 +42,6 @@ class PostLayoutActivity : AppCompatActivity() {
                 FirebaseDatabase.getInstance().getReference("post").child(postId).child("totalVisitor").setValue(noOfVisit.toString())
             }
         }
-
         binding.toolbarPost.setNavigationOnClickListener {
             finish()
         }
@@ -74,9 +60,6 @@ class PostLayoutActivity : AppCompatActivity() {
             true
         }
     }
-
-
-
     private fun share(){
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
@@ -87,16 +70,16 @@ class PostLayoutActivity : AppCompatActivity() {
     }
 
     private fun fontsize(): Float{
-       if(fontsize == 10F){
-           fontsize = 20F
-           return fontsize
-       }else if(fontsize == 20F){
-           fontsize = 30F
-           return fontsize
-       }else{
-           fontsize = 10F
-           return fontsize
-       }
+        if(fontsize == 10F){
+            fontsize = 20F
+            return fontsize
+        }else if(fontsize == 20F){
+            fontsize = 30F
+            return fontsize
+        }else{
+            fontsize = 10F
+            return fontsize
+        }
 
     }
 
@@ -106,12 +89,9 @@ class PostLayoutActivity : AppCompatActivity() {
     }
 
     private fun favourite(userId: String, post: information){
-
-
         val ref = FirebaseDatabase.getInstance().getReference("favouriteList").child(userId)
 
-
-       ref.addListenerForSingleValueEvent(object: ValueEventListener {
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 val added = snapshot.hasChild(post.postID)

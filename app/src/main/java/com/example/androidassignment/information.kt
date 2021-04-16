@@ -4,13 +4,13 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class information (var postID: String,var subject: String,var contentPost: String, var photoUpload: String): Parcelable{
+class information(var postID: String, var subject: String, var contentPost: String, var photoUpload: String, var time: String, var totalVisitor: String): Parcelable{
 /*    var postID: String? = null
     var subject: String? = null
     var contentPost: String? = null
     var photoUpload: String? = null*/
 
-    constructor():this("","","","")
+    constructor():this("","","","","", "")
 
 /*    init {
         this.postID = postID
