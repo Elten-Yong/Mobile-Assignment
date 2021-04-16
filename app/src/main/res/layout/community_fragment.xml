@@ -1,42 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
+
+    <ImageView
+        android:id="@+id/Search_icon"
+        android:layout_width="52dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_search" />
+
+    <TextView
         android:id="@+id/Search_bar"
-        android:layout_width="296dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="64dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Search" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="476dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="@id/Search_bar"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="-4dp" />
-
-    <Button
-        android:id="@+id/WritePost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="127dp"
-        android:layout_marginBottom="101dp"
-        android:text="Write Post"
-        android:textColor="@color/white"/>
+        android:layout_width="300dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="35dp"
+        android:gravity="center_vertical"
+        android:hint="Search"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/EditPost"
@@ -44,11 +33,51 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="127dp"
-        android:layout_marginBottom="101dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="508dp"
         android:text="Edit Post"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Search_bar"
+        app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/WritePost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="508dp"
+        android:text="Write Post"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/EditPost"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Search_bar"
+        app:layout_constraintVertical_bias="0.0" />
 
-</RelativeLayout>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="406dp"
+        android:layout_height="466dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WritePost">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_user_post"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-5dp"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
