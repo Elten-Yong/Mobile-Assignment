@@ -14,7 +14,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_post_layout.*
+import kotlinx.android.synthetic.main.activity_post_layout.toolbar_post
+import kotlinx.android.synthetic.main.view_post_activity.*
 
 class ViewPostActivity : AppCompatActivity() {
 
@@ -29,7 +33,7 @@ class ViewPostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_post_activity)
 
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val userID = FirebaseAuth.getInstance().currentUser!!.uid
 
         binding = ViewPostActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -51,7 +55,7 @@ class ViewPostActivity : AppCompatActivity() {
         toolbar_post.setOnMenuItemClickListener() {
             when(it.itemId){
                 R.id.iconBookmark -> {
-                    favourite(userId, post!!)
+                    favourite(userID, post!!)
                     Toast.makeText(applicationContext, "bookmark", Toast.LENGTH_LONG).show()
                 }
                 R.id.iconShare -> share()
@@ -63,6 +67,10 @@ class ViewPostActivity : AppCompatActivity() {
             }
             false
         }
+
+        val adapter = GroupAdapter<GroupieViewHolder>()
+
+        recycler_view_comments
     }
 
     private fun share(){
@@ -93,9 +101,9 @@ class ViewPostActivity : AppCompatActivity() {
         return true
     }
 
-    private fun favourite(userId: String, post: UserPost){
+    private fun favourite(userID: String, post: UserPost){
         val ref = FirebaseDatabase.getInstance().getReference("favouriteList")
-        val ref_check = FirebaseDatabase.getInstance().getReference("favouriteList").child(userId).child("postID")
+        val ref_check = FirebaseDatabase.getInstance().getReference("favouriteList").child(userID).child("postID")
         ref_check.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var added = false
@@ -106,11 +114,11 @@ class ViewPostActivity : AppCompatActivity() {
 
                     if(postForChecking!!.postID.equals(post.postID)){
                         added = true
-                        FirebaseDatabase.getInstance().getReference("favouriteList").child(userId).child(post.postID).removeValue()
+                        FirebaseDatabase.getInstance().getReference("favouriteList").child(userID).child(post.postID).removeValue()
                     }
 
                 }
-                if(!added) ref.child(userId).child(post.postID).setValue(post)
+                if(!added) ref.child(userID).child(post.postID).setValue(post)
             }
 
             override fun onCancelled(error: DatabaseError) {
