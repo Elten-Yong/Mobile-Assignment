@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addPostActivity"></activity>
+        <activity android:name=".addPostActivity"/>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
@@ -41,6 +41,9 @@
             android:name=".Community.ViewPostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Community.SearchingActivity" />
+        <activity android:name=".EditPhoneNumberActivity"/>
+        <activity android:name=".AboutUsActivity"/>
+
     </application>
 
 </manifest>
