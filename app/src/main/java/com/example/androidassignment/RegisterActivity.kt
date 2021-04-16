@@ -1,5 +1,6 @@
 package com.example.androidassignment
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -11,6 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.dialog_progress.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -19,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegisterBinding // viewbinding
     private lateinit var auth: FirebaseAuth // Authentication
     private lateinit var database: DatabaseReference
+    lateinit var progressDialog :Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,8 +97,11 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
+        showProgressDialog("Please Wait...")
+
         auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
             .addOnCompleteListener(this) { task ->
+                hideProgressDialog()
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
 
@@ -134,6 +140,24 @@ class RegisterActivity : AppCompatActivity() {
 
         database.child("users").child(userId).setValue(user)
 
+    }
+
+    fun showProgressDialog(text:String){
+        progressDialog = Dialog(this)
+
+        progressDialog.setContentView(R.layout.dialog_progress) // create one later
+
+        progressDialog.txtDialogProgress.text = text
+
+        progressDialog.setCancelable(false)
+
+        progressDialog.setCanceledOnTouchOutside(false)
+
+        progressDialog.show()
+    }
+
+    fun hideProgressDialog(){
+        progressDialog.dismiss()
     }
 
 //    //add phonenumber

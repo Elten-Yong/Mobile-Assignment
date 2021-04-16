@@ -10,8 +10,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 
 class LoginActivity : AppCompatActivity() {
@@ -29,13 +27,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        // Gets resize one
-//        val layout: ConstraintLayout = binding.root
-//// Gets the layout params that will allow you to resize the layout
-//        val params: ViewGroup.LayoutParams = layout.layoutParams
-//        params.width = 1000
-//        params.height = 1000
-//        layout.layoutParams = params
 
         //register onclick
         binding.txtRegister.setOnClickListener {
@@ -77,16 +68,21 @@ class LoginActivity : AppCompatActivity() {
             password.requestFocus()
             return
         }
-        if(!isValidPassword(password.text.toString())){
-            password.error = "Over 6 characters with alphabet and number please."
-            password.requestFocus()
-            return
-        }
+//        if(!isValidPassword(password.text.toString())){
+//            password.error = "Over 6 characters with alphabet and number please."
+//            password.requestFocus()
+//            return
+//        }
 
         auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(
+                            baseContext, "Signed In",
+                            Toast.LENGTH_SHORT
+                    ).show()
+
                     val user = auth.currentUser
                     updateUI(user)
 
@@ -108,28 +104,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-//     fun checkUser() : Boolean{
-//         var isAdmin : Boolean = false
-//        database = Firebase.database.reference // reference to database
-//         val userId = FirebaseAuth.getInstance().currentUser.uid// pk
-//
-//        database.child("users").child(userId).child("type").get().addOnSuccessListener {
-//            if(((it.value).toString()).equals("admin")){
-//                isAdmin = true
-//            }
-//            Log.e("firebase", "Error getting data", $it.value)
-//        }.addOnFailureListener{
-//            Log.e("firebase", "Error getting data", it)
-//        }
-//         return isAdmin
-//    }
 
-    private fun isValidPassword(password: String?): Boolean {
-        val pattern: Pattern
-        val matcher: Matcher
-        val PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}\$"
-        pattern = Pattern.compile(PASSWORD_PATTERN)
-        matcher = pattern.matcher(password)
-        return matcher.matches()
-    }
+//    private fun isValidPassword(password: String?): Boolean {
+//        val pattern: Pattern
+//        val matcher: Matcher
+//        val PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}\$"
+//        pattern = Pattern.compile(PASSWORD_PATTERN)
+//        matcher = pattern.matcher(password)
+//        return matcher.matches()
+//    }
 }

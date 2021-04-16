@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.androidassignment">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="androidx.multidex.MultiDexApplication"
@@ -16,15 +17,16 @@
         <activity android:name=".EditPostActivity2" />
         <activity android:name=".PostLayoutActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".EditPhoneNumberActivity"></activity>
+        <activity android:name=".AboutUsActivity" />
         <activity
-            android:name=".EditPostForSearchingActivity"
-            android:label="@string/title_activity_edit_post_for_searching"
-            android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
-        <activity android:name=".PostSearchingActivity" />
-        <activity android:name=".EditPostActivity" />
-        <activity android:name=".LookPostActivity" />
+            android:name=".ForgetPasswordActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,14 +34,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".addPostActivity" />
         <activity android:name=".editPostActivity" />
+        <activity android:name=".EditPostActivity" />
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
             android:label="@string/app_name" />
+        <activity android:name=".CreatePostActivity" />
+        <activity android:name=".ManagePostActivity" />
     </application>
 
 </manifest>
