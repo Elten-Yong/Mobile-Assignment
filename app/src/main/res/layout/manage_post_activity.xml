@@ -1,35 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/postPic"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        app:layout_constraintBottom_toTopOf="@id/topic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:ignore="VectorDrawableCompat" />
 
     <EditText
         android:id="@+id/topic"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="28dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="340dp"
+        android:text="Change topic ..."
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintStart_toStartOf="parent"
-        android:hint="Change topic ..."/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/description"
-        android:layout_width="404dp"
-        android:layout_height="216dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="150dp"
         android:gravity="top|start"
-        android:hint="Change description ..."
+        android:text="Change description ..."
         android:inputType="textMultiLine"
         android:maxLines="9"
-        android:paddingLeft="10dp"
         android:paddingTop="20dp"
-        android:paddingRight="10dp"
         android:paddingBottom="20dp"
         android:scrollbars="none"
         android:textColor="#000"
@@ -41,12 +48,13 @@
         android:id="@+id/Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="44dp"
+        android:layout_marginBottom="95dp"
         android:text="Submit"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
         app:layout_constraintVertical_bias="0.111" />
 
@@ -54,10 +62,12 @@
         android:id="@+id/Delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="64dp"
-        android:textColor="@color/white"
+        android:layout_marginBottom="95dp"
+        android:layout_toStartOf="@+id/Submit"
         android:text="Delete"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/Submit"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
@@ -65,22 +75,19 @@
         android:id="@+id/Upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_below="@+id/postPic"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:text="Upload"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/postPic" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="141dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@id/topic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="VectorDrawableCompat" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="85dp"
+        android:background="@color/saturated_white_blue" />
+</RelativeLayout>

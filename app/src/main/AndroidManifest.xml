@@ -10,8 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssignment">
-        <activity android:name=".PostLayoutActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".PostLayoutActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".EditPostForSearchingActivity"
             android:label="@string/title_activity_edit_post_for_searching"
@@ -21,26 +22,30 @@
         <activity android:name=".LookPostActivity" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".addPostActivity" >
-
-        </activity>
+        <activity android:name=".addPostActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" />
+        <activity android:name=".Community.CreatePostActivity" />
+        <activity android:name=".Community.ManagePostActivity" />
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Community.ManagePost"/>
+        <activity android:name=".Community.ManagePost" />
 
-        <activity android:name=".CreatePostActivity" />
-        <activity android:name=".ManagePostActivity" />
+        <activity
+            android:name=".Community.ViewPostActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Community.SearchingActivity" />
     </application>
 
 </manifest>

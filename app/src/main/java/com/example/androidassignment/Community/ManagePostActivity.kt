@@ -1,4 +1,4 @@
-package com.example.androidassignment
+package com.example.androidassignment.Community
 
 import android.app.Activity
 import android.content.Intent
@@ -8,15 +8,14 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidassignment.databinding.CreatePostActivityBinding
+import com.example.androidassignment.Community.CommunityActivity.Companion.POST_KEY
+import com.example.androidassignment.R
 import com.example.androidassignment.databinding.ManagePostActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_edit_post.*
-import kotlinx.android.synthetic.main.add_post_activity.*
-import kotlinx.android.synthetic.main.add_post_activity.imageView
+import kotlinx.android.synthetic.main.manage_post_activity.*
 import java.util.*
 
 class ManagePostActivity : AppCompatActivity() {
@@ -26,20 +25,28 @@ class ManagePostActivity : AppCompatActivity() {
     private var filepath: Uri? = null
     private var photo: String? = null
     private var changePic: Int = 0
+    lateinit var postID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.manage_post_activity)
-        supportActionBar?.title = "Edit posts"
+        val actionBar = supportActionBar
+
+        actionBar!!.title = "Edit post"
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
 
         binding = ManagePostActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val post = intent.getParcelableExtra<UserPost>(CommunityActivity.POST_KEY)
+        val intent = getIntent();
+
+        val post = intent.getParcelableExtra<UserPost>(POST_KEY)
 
         if (post != null) {
+            postID = post.postID
             imageUrl = post.photoUpload
-            Picasso.get().load(post.photoUpload).into(binding.imageView)
+            Picasso.get().load(post.photoUpload).into(binding.postPic)
             binding.topic.setText(post.topic)
             binding.description.setText(post.description)
         }
@@ -59,18 +66,19 @@ class ManagePostActivity : AppCompatActivity() {
         }
 
         binding.Delete.setOnClickListener {
-
+            deletePost()
         }
 
         binding.Upload.setOnClickListener{
             choosePic();
         }
+
     }
 
     private fun choosePic(){
         val image = Intent()
-        image.type = "image/*"
-        image.action = Intent.ACTION_GET_CONTENT
+        image.setType("image/*")
+        image.setAction(Intent.ACTION_GET_CONTENT)
         startActivityForResult(Intent.createChooser(image, "Choose Picture"), 111)
     }
 
@@ -79,7 +87,7 @@ class ManagePostActivity : AppCompatActivity() {
         if(requestCode == 111 && resultCode == Activity.RESULT_OK && data != null){
             filepath = data.data!!
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,filepath)
-            imageView.setImageBitmap(bitmap)
+            postPic.setImageBitmap(bitmap)
             changePic++
         }
     }
@@ -100,29 +108,29 @@ class ManagePostActivity : AppCompatActivity() {
             return
         }
 
-        if(imageView.drawable ==null){
+        if(postPic.drawable ==null){
             Toast.makeText(applicationContext, "Upload your image first", Toast.LENGTH_LONG).show()
-            imageView.requestFocus()
-            return
         }
 
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/user's post/$filename")
+        if(filepath == null) return
         ref.putFile(filepath!!)
             .addOnSuccessListener {
                 Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")
                 ref.downloadUrl.addOnSuccessListener {
                     photo =  it.toString()
                     Log.d("upload", "File Location:$it")
-                    val userID = FirebaseAuth.getInstance().currentUser.uid
-                    val ref1 = FirebaseDatabase.getInstance().getReference("user post/$userID")
-                    val postID = ref1.push().key
-                    val post = UserPost(topic.text.toString(), text.text.toString(), photo.toString(), userID.toString())
+                    val userID = FirebaseAuth.getInstance().currentUser!!.uid
+                    val ref1 = FirebaseDatabase.getInstance().getReference("user post")
+                    val postID = postID
+                    val post = UserPost(topic.text.toString(), text.text.toString(), photo.toString(), userID.toString(), postID.toString())
 
                     ref1.child(postID.toString()).setValue(post)
 
                     Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
-                    finish()
+                    val intent= Intent(this, ManagePost::class.java)
+                    this.startActivity(intent)
                 }
             }
             .addOnFailureListener{
@@ -146,19 +154,31 @@ class ManagePostActivity : AppCompatActivity() {
             return
         }
 
-        if(imageView.drawable ==null){
+        if(postPic.drawable ==null){
             Toast.makeText(applicationContext, "Upload your image first", Toast.LENGTH_LONG).show()
-            imageView.requestFocus()
-            return
         }
-        val userID = FirebaseAuth.getInstance().currentUser.uid
-        val ref1 = FirebaseDatabase.getInstance().getReference("user post/$userID")
-        val postID = ref1.push().key
-        val post = UserPost(topic.text.toString(), text.text.toString(), photo.toString(), userID.toString())
 
-        ref1.child(postID.toString()).setValue(post)
+        val userID = FirebaseAuth.getInstance().currentUser!!.uid
+        val ref = FirebaseDatabase.getInstance().getReference("user post")
+        val postID = postID
+        val post = UserPost(topic.text.toString(), text.text.toString(), imageUrl, userID.toString(), postID.toString())
+
+        ref.child(postID.toString()).setValue(post)
 
         Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
+        val intent= Intent(this, ManagePost::class.java)
+        this.startActivity(intent)
+    }
+
+    private fun deletePost(){
+        val ref = FirebaseDatabase.getInstance().getReference("user post").child(postID)
+        ref.removeValue()
+        Toast.makeText(applicationContext, "Post deleted", Toast.LENGTH_LONG).show()
         finish()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -1,4 +1,4 @@
-package com.example.androidassignment
+package com.example.androidassignment.Community
 
 import android.app.Activity
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidassignment.R
 import com.example.androidassignment.databinding.CreatePostActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
@@ -83,10 +84,10 @@ class CreatePostActivity() : AppCompatActivity() {
                 Log.d("upload", "File Location:$it")
                 //database = Firebase.database.reference // reference to database
 
-                val userID = FirebaseAuth.getInstance().currentUser.uid
-                val ref1 = FirebaseDatabase.getInstance().getReference("user post")
+                val userID = FirebaseAuth.getInstance().currentUser!!.uid
+                val ref1 = FirebaseDatabase.getInstance().getReference("/user post")
                 val postID = ref1.push().key
-                val post = UserPost(topic.text.toString(), description.text.toString(), photo.toString(), userID.toString())
+                val post = UserPost(topic.text.toString(), description.text.toString(), photo.toString(), userID.toString(), postID.toString())
 
                 ref1.child(postID.toString()).setValue(post)
 

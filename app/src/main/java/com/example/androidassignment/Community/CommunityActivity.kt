@@ -1,4 +1,4 @@
-package com.example.androidassignment
+package com.example.androidassignment.Community
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,10 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.androidassignment.*
 import com.example.androidassignment.databinding.CommunityFragmentBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,18 +22,17 @@ import kotlinx.android.synthetic.main.user_posts.view.*
 
 class CommunityActivity : Fragment() {
 
+    private var _binding: CommunityFragmentBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var viewModel: CommunityViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
         }
     }
-
-    private var _binding: CommunityFragmentBinding? = null
-    private val binding get() = _binding!!
-    //private val TAG = "ReadAndWriteSnippets"
-
-    //private lateinit var viewModel: CommunityViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -50,11 +48,30 @@ class CommunityActivity : Fragment() {
         }
 
         binding.EditPost.setOnClickListener{
-            val intent= Intent(getActivity(), ManagePostActivity::class.java)
+            val intent= Intent(getActivity(), ManagePost::class.java)
             getActivity()?.startActivity(intent)
         }
 
+        binding.SearchBar.setOnClickListener{
+            val intent= Intent(getActivity(), SearchingActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
+
+        binding.SearchIcon.setOnClickListener{
+            val intent= Intent(getActivity(), SearchingActivity::class.java)
+            getActivity()?.startActivity(intent)
+
+
+        }
+
         val adapter = GroupAdapter<GroupieViewHolder>()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.recyclerViewUserPost.adapter = adapter
+            fetchPostData()
+            Toast.makeText(getActivity(), "Updated!", Toast.LENGTH_SHORT).show();
+            binding.swipeRefresh.isRefreshing = false
+        }
 
         binding.recyclerViewUserPost.adapter = adapter
         fetchPostData()
@@ -62,10 +79,10 @@ class CommunityActivity : Fragment() {
         return view
     }
 
-    override fun onDestroyView() {
+    /*override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
+    }*/
 
     /*override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -79,7 +96,7 @@ class CommunityActivity : Fragment() {
     }
 
     private fun fetchPostData(){
-        val ref = FirebaseDatabase.getInstance().getReference("user post")
+        val ref = FirebaseDatabase.getInstance().getReference("/user post")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -94,7 +111,7 @@ class CommunityActivity : Fragment() {
 
                 adapter.setOnItemClickListener { item, view ->
                     val postItem = item as PostItem
-                    val intent= Intent(view.context, ManagePostActivity::class.java)
+                    val intent= Intent(view.context, ViewPostActivity::class.java)
                     intent.putExtra(POST_KEY, postItem.post)
                     getActivity()?.startActivity(intent)
                 }
@@ -107,7 +124,7 @@ class CommunityActivity : Fragment() {
         })
     }
 
-    class PostItem(val post:UserPost): Item<GroupieViewHolder>() {
+    class PostItem(val post: UserPost): Item<GroupieViewHolder>() {
 
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
             viewHolder.itemView.topic.text = post.topic
