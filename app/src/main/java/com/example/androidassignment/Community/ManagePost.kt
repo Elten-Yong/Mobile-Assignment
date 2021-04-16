@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.androidassignment.R
 import com.example.androidassignment.databinding.*
 import com.google.firebase.auth.FirebaseAuth
@@ -44,7 +45,7 @@ class ManagePost : AppCompatActivity() {
         binding.swipeRefresh.setOnRefreshListener {
             binding.recyclerViewManagePost.adapter = adapter
             fetchData()
-            //Toast.makeText(getActivity(), "Updated!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(applicationContext, "Updated!", Toast.LENGTH_SHORT).show();
             binding.swipeRefresh.isRefreshing = false
         }
 
