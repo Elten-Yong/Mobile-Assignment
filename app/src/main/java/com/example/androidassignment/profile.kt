@@ -99,6 +99,16 @@ class profile : Fragment() {
             startActivityForResult(intent, 111)
         }
 
+        binding.iconHistory.setOnClickListener{
+            startActivity(Intent(getActivity(), ViewHistoryActivity::class.java))
+
+        }
+
+        binding.iconBookmark.setOnClickListener {
+            startActivity(Intent(getActivity(), BookmarkActivity::class.java))
+
+        }
+
         return view
     }
 
@@ -250,6 +260,7 @@ class profile : Fragment() {
                     .into(binding.ProfileImage)
             }
         }
+
 
     }
 

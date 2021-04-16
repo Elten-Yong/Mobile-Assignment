@@ -25,7 +25,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".EditPostForSearchingActivity"
-            android:label="@string/title_activity_edit_post_for_searching"
             android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
         <activity android:name=".PostSearchingActivity"
             android:windowSoftInputMode="adjustResize"/>

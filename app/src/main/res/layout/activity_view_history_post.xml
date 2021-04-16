@@ -24,6 +24,11 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
 
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
 
         <TextView
             android:id="@+id/subjectList"
@@ -36,6 +41,13 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
 
+        <View
+            android:id="@+id/view"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
@@ -46,6 +58,12 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
 
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/black" />
 
         <TextView
             android:layout_marginTop="20dp"
