@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_donation_type">
+
+    <TextView
+        android:id="@+id/txtDonationType"
+        android:layout_width="313dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:text="What kind of item would you like to donate"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cash"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="48dp"
+        android:text="CASH"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtDonationType"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toStartOf="@+id/txtDonationType"
+        app:layout_constraintTop_toBottomOf="@+id/txtDonationType" />
+
+    <Button
+        android:id="@+id/item"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
+        android:text="ITEM"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cash"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/cash"
+        app:layout_constraintTop_toBottomOf="@+id/cash" />
+</androidx.constraintlayout.widget.ConstraintLayout>
