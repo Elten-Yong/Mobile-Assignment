@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.androidassignment.Community.CommunityActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity(){
         val profileFragment = profile()
         val infoFragment = infoCenter()
         val communityFragment = CommunityActivity()
+
+
 
         database = Firebase.database.reference // reference to database
 
@@ -49,7 +52,10 @@ class MainActivity : AppCompatActivity(){
 
                     when (it.itemId){
                         R.id.infoCenter -> makeCurrentFragment(infoFragment)
-                        R.id.profile -> makeCurrentFragment(profileFragment)
+                        R.id.profile -> {
+
+                            makeCurrentFragment(profileFragment)
+                           }
                         R.id.CommunityActivity -> makeCurrentFragment(communityFragment)
                     }
                     true
@@ -61,6 +67,17 @@ class MainActivity : AppCompatActivity(){
 
 
     }
+
+//    private fun refreshFragment(){
+//        var frg: Fragment? = profile()
+//        frg = getSupportFragmentManager().findFragmentByTag("ProfileFragment")
+//        val ft: FragmentTransaction = getSupportFragmentManager().beginTransaction()
+//        if (frg != null) {
+//            ft.detach(frg)
+//            ft.attach(frg)
+//        }
+//        ft.commit()
+//    }
 
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {

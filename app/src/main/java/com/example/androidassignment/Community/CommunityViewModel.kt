@@ -1,4 +1,4 @@
-package com.example.androidassignment
+package com.example.androidassignment.Community
 
 import androidx.lifecycle.ViewModel
 

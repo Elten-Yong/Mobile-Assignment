@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_donationMethod">
+
+    <TextView
+        android:id="@+id/txtDonationMethod"
+        android:layout_width="313dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:text="Choose your donation method"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/card"
+        android:layout_width="294dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="48dp"
+        android:text="Debit/Credit Card"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtDonationMethod"
+        app:layout_constraintStart_toStartOf="@+id/txtDonationMethod"
+        app:layout_constraintTop_toBottomOf="@+id/txtDonationMethod" />
+
+    <Button
+        android:id="@+id/online_banking"
+        android:layout_width="294dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="36dp"
+        android:lineSpacingExtra="30sp"
+        android:text="Button"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/card"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/card"
+        app:layout_constraintTop_toBottomOf="@+id/card" />
+</androidx.constraintlayout.widget.ConstraintLayout>

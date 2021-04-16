@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/postPic"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@id/topic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/topic"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/postPic"
+        android:layout_marginTop="15dp"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/topic"
+        android:layout_marginTop="25dp"
+        android:maxLines="9"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:scrollbars="none"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/description"
+        android:layout_marginTop="20dp"
+        android:background="@color/saturated_white_blue" />
+
+</RelativeLayout>
