@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import com.example.androidassignment.databinding.ActivityEditPostBinding
-import com.example.androidassignment.databinding.ActivityPostSearchingBinding
+import com.example.androidassignment.databinding.ActivityPostSearchingForUserBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -16,29 +15,26 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
-import kotlinx.android.synthetic.main.activity_post_searching.*
 import kotlinx.android.synthetic.main.item_view.view.*
 
-class PostSearchingActivity : AppCompatActivity() {
+class PostSearchingForUserActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityPostSearchingBinding
+    lateinit var binding: ActivityPostSearchingForUserBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_searching)
+        setContentView(R.layout.activity_post_searching_for_user)
         val actionBar = supportActionBar
 
         actionBar!!.title = "Search"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-
-        binding = ActivityPostSearchingBinding.inflate(layoutInflater)
+        binding = ActivityPostSearchingForUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val adapter = GroupAdapter<GroupieViewHolder>()
 
         binding.recyclerViewSearching.adapter = adapter
-
-        binding.searchBar.addTextChangedListener(object : TextWatcher{
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -85,7 +81,7 @@ class PostSearchingActivity : AppCompatActivity() {
                 }
                 adapter.setOnItemClickListener { item, view ->
                     val postItem = item as PostItem
-                    val intent= Intent(view.context, EditPostActivity::class.java)
+                    val intent= Intent(view.context, PostLayoutForUserActivity::class.java)
                     intent.putExtra(POST_KEY, postItem.post)
                     startActivity(intent)
                     finish()

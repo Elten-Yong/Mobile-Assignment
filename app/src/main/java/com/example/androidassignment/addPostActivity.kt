@@ -19,7 +19,7 @@ class addPostActivity : AppCompatActivity() {
     lateinit var binding: AddPostActivityBinding
     var SelectedImages: String? = null
     var filepath: Uri? = null
-
+    var changedOnphoto: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_post_activity)
@@ -31,14 +31,19 @@ class addPostActivity : AppCompatActivity() {
         binding.submit.setOnClickListener {
             submitPost()
 
-            if(binding.subjectList.text!= null && binding.userPost.text != null){
-                finish()
+
+            if(binding.subjectList.text!= null && binding.userPost.text != null && changedOnphoto != 0){
+                finish();
             }
 
         }
 
         binding.upload.setOnClickListener{
             choosePic();
+        }
+
+        binding.cancelAction.setOnClickListener{
+            finish()
         }
 
     }
@@ -59,6 +64,7 @@ class addPostActivity : AppCompatActivity() {
             filepath = data.data!!
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filepath)
             imageView.setImageBitmap(bitmap)
+            changedOnphoto++
         }
     }
 
@@ -80,32 +86,16 @@ class addPostActivity : AppCompatActivity() {
             return
         }
 
-        if(imageView.getDrawable()==null){
-            Toast.makeText(applicationContext, "Upload your image first", Toast.LENGTH_LONG).show()
+        if(changedOnphoto == 0){
+            Toast.makeText(applicationContext, "Please insert your image", Toast.LENGTH_LONG).show()
+            binding.imageView.requestFocus()
+            return
         }
 
         val filename = UUID.randomUUID().toString()
         val ref1 = FirebaseStorage.getInstance().getReference("/images/$filename")
         if(filepath == null) return
-        {
-            ref1.putFile(filepath!!)
-                .addOnSuccessListener {
-                    Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")
-                    ref1.downloadUrl.addOnSuccessListener {
-                        SelectedImages =  it.toString()
-                        Log.d("upload", "File Location:$it")
-                        val ref = FirebaseDatabase.getInstance().getReference("post")
-                        val postID = ref.push().key
-                        val post = information(postID.toString(), subject.text.toString(), text.text.toString(), SelectedImages.toString())
 
-                        ref.child(postID.toString()).setValue(post)
-                        Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
-                    }
-                }
-                .addOnFailureListener{
-                }
-
-        }
         ref1.putFile(filepath!!)
                 .addOnSuccessListener {
                     Log.d("upload", "Successfully uploaded image: ${it.metadata?.path}")
@@ -114,7 +104,7 @@ class addPostActivity : AppCompatActivity() {
                        Log.d("upload", "File Location:$it")
                         val ref = FirebaseDatabase.getInstance().getReference("post")
                         val postID = ref.push().key
-                        val post = information(postID.toString(), subject.text.toString(), text.text.toString(), SelectedImages.toString())
+                        val post = information(postID.toString(), subject.text.toString(), text.text.toString(), SelectedImages.toString(), Calendar.getInstance().getTime().toString(), "0")
 
                         ref.child(postID.toString()).setValue(post)
                         Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()

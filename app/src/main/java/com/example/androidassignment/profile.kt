@@ -36,6 +36,16 @@ class profile : Fragment() {
 
             getActivity()?.finish()
         }
+
+        binding.iconBookmark.setOnClickListener {
+            val intent= Intent(getActivity(), BookmarkActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
+
+        binding.iconHistory.setOnClickListener {
+            val intent= Intent(getActivity(),ViewHistoryActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
         return view
     }
 
