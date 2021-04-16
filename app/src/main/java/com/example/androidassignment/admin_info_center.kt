@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -33,7 +34,8 @@ import kotlinx.android.synthetic.main.item_view.view.*
  */
 
 class admin_info_center : Fragment() {
-    // TODO: Rename and change types of parameters
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,7 @@ class admin_info_center : Fragment() {
         arguments?.let {
 
         }
+
 
     }
 
@@ -56,12 +59,36 @@ class admin_info_center : Fragment() {
         binding.addPost.setOnClickListener{
             val intent= Intent(getActivity(), addPostActivity::class.java)
             getActivity()?.startActivity(intent)
+
+
+        }
+
+        binding.searchBar.setOnClickListener{
+            val intent= Intent(getActivity(), PostSearchingActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
+
+        binding.searchIcon.setOnClickListener{
+            val intent= Intent(getActivity(), PostSearchingActivity::class.java)
+            getActivity()?.startActivity(intent)
+
+
         }
 
         val adapter = GroupAdapter<GroupieViewHolder>()
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.recyclerViewAdminInfo.adapter = adapter
+            fetchPostData()
+            Toast.makeText(getActivity(),"Updated!",Toast.LENGTH_SHORT).show();
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+
+
         binding.recyclerViewAdminInfo.adapter = adapter
         fetchPostData()
+
 
         return view
 

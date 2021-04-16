@@ -10,4 +10,5 @@
     <color name="btnColor">#2D9CDB</color>
     <color name="desaturated_blue">#19b6e6</color>
     <color name="saturated_white_blue">#2D9CDB</color>
+    <color name="red">#EF0000</color>
 </resources>
