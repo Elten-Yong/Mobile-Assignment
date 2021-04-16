@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cardInformationActivity">
+    tools:context=".activity_card_information">
 
     <TextView
         android:id="@+id/inputCVV"
@@ -16,7 +16,6 @@
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtCVV"
         app:layout_constraintStart_toEndOf="@+id/txtCVV"
         app:layout_constraintTop_toTopOf="@+id/txtCVV" />
 
@@ -66,19 +65,17 @@
 
     <TextView
         android:id="@+id/inputCardNumber"
-        android:layout_width="227dp"
+        android:layout_width="290dp"
         android:layout_height="40dp"
+        android:layout_marginStart="8dp"
         android:editable="true"
         android:inputType="number"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtCardNumber"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtCardNumber"
-        app:layout_constraintTop_toTopOf="@+id/txtCardNumber"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/txtCardNumber" />
 
     <TextView
         android:id="@+id/txtCardNumber"
@@ -135,6 +132,15 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="13dp" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="159dp"
+        tools:layout_editor_absoluteY="267dp" />
+
     <Spinner
         android:id="@+id/spinnerMonth"
         android:layout_width="47dp"
@@ -158,25 +164,11 @@
         android:id="@+id/slash"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
         android:text="/"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerMonth"
-        app:layout_constraintStart_toEndOf="@+id/spinnerMonth"
-        app:layout_constraintTop_toTopOf="@+id/spinnerMonth" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/submit"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+        app:layout_constraintTop_toTopOf="@+id/spinnerMonth"
+        tools:layout_editor_absoluteX="215dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".donationTypeActivity">
+    tools:context=".activity_donation_type">
 
     <TextView
         android:id="@+id/txtDonationType"
@@ -29,7 +29,6 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:onClick="cash"
         app:layout_constraintEnd_toEndOf="@+id/txtDonationType"
         app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="@+id/txtDonationType"
@@ -44,7 +43,6 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:onClick="item"
         app:layout_constraintEnd_toEndOf="@+id/cash"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/cash"
