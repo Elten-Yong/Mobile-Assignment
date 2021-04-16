@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity(){
         val infoFragment = infoCenter()
         val communityFragment = CommunityActivity()
 
+
+
         database = Firebase.database.reference // reference to database
 
         database.child("users").child(userId).child("type").get().addOnSuccessListener {
@@ -50,7 +52,10 @@ class MainActivity : AppCompatActivity(){
 
                     when (it.itemId){
                         R.id.infoCenter -> makeCurrentFragment(infoFragment)
-                        R.id.profile -> makeCurrentFragment(profileFragment)
+                        R.id.profile -> {
+
+                            makeCurrentFragment(profileFragment)
+                           }
                         R.id.CommunityActivity -> makeCurrentFragment(communityFragment)
                     }
                     true
@@ -62,6 +67,17 @@ class MainActivity : AppCompatActivity(){
 
 
     }
+
+//    private fun refreshFragment(){
+//        var frg: Fragment? = profile()
+//        frg = getSupportFragmentManager().findFragmentByTag("ProfileFragment")
+//        val ft: FragmentTransaction = getSupportFragmentManager().beginTransaction()
+//        if (frg != null) {
+//            ft.detach(frg)
+//            ft.attach(frg)
+//        }
+//        ft.commit()
+//    }
 
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {

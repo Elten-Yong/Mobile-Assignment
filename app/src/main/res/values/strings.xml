@@ -26,9 +26,9 @@
     <string name="history">History</string>
     <string name="edit">Info</string>
     <string name="info">Info</string>
-    <string name="email">Email</string>
+    <string name="email">Email :</string>
     <string name="user">User</string>
-    <string name="phone">Phone</string>
+    <string name="phone">Phone :</string>
     <string name="emailicon">EmailIcon</string>
     <string name="submit">Submit</string>
     <string name="BankCard">Bank Card :</string>
@@ -38,13 +38,7 @@
 
     <string name="profilepicture">Profile Pciture</string>
     <string name="account_informations">Account Information</string>
-    <string name="title_activity_edit_post_for_searching">EditPostForSearchingActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="phone_number">Phone Number :</string>
+    <string name="comfirm">Comfirm</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
