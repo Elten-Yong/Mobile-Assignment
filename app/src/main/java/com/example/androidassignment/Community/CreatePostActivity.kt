@@ -8,25 +8,22 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidassignment.R
-import com.example.androidassignment.databinding.CreatePostActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.add_post_activity.*
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.example.androidassignment.R
+import com.example.androidassignment.databinding.CreatePostActivityBinding
 import java.util.*
 
 class CreatePostActivity() : AppCompatActivity() {
 
     lateinit var binding: CreatePostActivityBinding
-    lateinit var filepath: Uri
 
     private lateinit var auth: FirebaseAuth // Authentication
-    private lateinit var database: DatabaseReference //Reference
-
+    lateinit var filepath: Uri
     var photo: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,21 +36,25 @@ class CreatePostActivity() : AppCompatActivity() {
         binding = CreatePostActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Submit button
         binding.Submit.setOnClickListener {
-            addPost()
+            submitPost()
         }
 
+        //Cancel button
         binding.Cancel.setOnClickListener {
             super.onBackPressed()
         }
 
+        //Upload button
         binding.Upload.setOnClickListener{
             selectPhoto();
         }
 
     }
 
-    private fun addPost(){
+    //Submit post function
+    private fun submitPost(){
         val topic = binding.TopicInput
         val description = binding.DescriptionInput
 
@@ -82,7 +83,6 @@ class CreatePostActivity() : AppCompatActivity() {
             ref.downloadUrl.addOnSuccessListener {
                 photo = it.toString()
                 Log.d("upload", "File Location:$it")
-                //database = Firebase.database.reference // reference to database
 
                 val userID = FirebaseAuth.getInstance().currentUser!!.uid
                 val ref1 = FirebaseDatabase.getInstance().getReference("/user post")
@@ -94,11 +94,13 @@ class CreatePostActivity() : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
                 finish()
             }
+
         }.addOnFailureListener {}
 
         return
     }
 
+    //Choose photo function
     private fun selectPhoto(){
         val image = Intent()
         image.type = "image/*"

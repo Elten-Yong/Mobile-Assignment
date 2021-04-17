@@ -7,8 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import com.example.androidassignment.R
-import com.example.androidassignment.databinding.ActivityEditPostBinding
-import com.example.androidassignment.databinding.ActivityPostSearchingBinding
 import com.example.androidassignment.databinding.SearchingActivityBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,8 +16,6 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
-import kotlinx.android.synthetic.main.activity_post_searching.*
-import kotlinx.android.synthetic.main.item_view.view.*
 import kotlinx.android.synthetic.main.user_posts2.view.*
 
 class SearchingActivity : AppCompatActivity() {
@@ -39,6 +35,8 @@ class SearchingActivity : AppCompatActivity() {
         val adapter = GroupAdapter<GroupieViewHolder>()
 
         binding.recyclerViewSearching.adapter = adapter
+
+        //Searching when text entered
         binding.SearchBar.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -59,6 +57,7 @@ class SearchingActivity : AppCompatActivity() {
 
     }
 
+    //Back function
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
@@ -68,6 +67,7 @@ class SearchingActivity : AppCompatActivity() {
         val POST_KEY = "POST_KEY"
     }
 
+    //Load data
     private fun fetchPostData(s: String){
         val ref = FirebaseDatabase.getInstance().getReference("user post").orderByChild("topic").startAt(s).endAt(s+"\uf8ff")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -84,6 +84,7 @@ class SearchingActivity : AppCompatActivity() {
 
                     }
                 }
+
                 adapter.setOnItemClickListener { item, view ->
                     val postItem = item as PostItem
                     val intent= Intent(view.context, ViewPostActivity::class.java)
@@ -100,6 +101,7 @@ class SearchingActivity : AppCompatActivity() {
         })
     }
 
+    //Add data to recycler view
     class PostItem(val post:UserPost): Item<GroupieViewHolder>() {
 
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
