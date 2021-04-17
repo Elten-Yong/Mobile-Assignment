@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
-class donationMethodActivity : AppCompatActivity() {
+class DonationMethodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_donation_method)
     }
 
     fun cardInformation(view: View) {
-        startActivity(Intent(this,donationMethodActivity::class.java))
+        startActivity(Intent(this,CardInformationActivity::class.java))
+    }
+
+    fun onlineBanking(){
+        startActivity(Intent(this,OnlineBankingActivity::class.java))
     }
 
 
