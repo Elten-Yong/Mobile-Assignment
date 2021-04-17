@@ -1,9 +1,9 @@
 package com.example.androidassignment
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 
 class donationMethodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +12,7 @@ class donationMethodActivity : AppCompatActivity() {
     }
 
     fun cardInformation(view: View) {
-        startActivity(Intent(this,cardInformationActivity::class.java))
+        startActivity(Intent(this,activity_card_information::class.java))
     }
 
 

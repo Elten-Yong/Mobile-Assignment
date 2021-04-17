@@ -39,6 +39,11 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.btnCancel.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
         // signup btn onlick
         binding.btnSignUp.setOnClickListener {
             signUp()
