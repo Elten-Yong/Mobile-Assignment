@@ -12,7 +12,7 @@ class donationMethodActivity : AppCompatActivity() {
     }
 
     fun cardInformation(view: View) {
-        startActivity(Intent(this,activity_card_information::class.java))
+        startActivity(Intent(this,donationMethodActivity::class.java))
     }
 
 
