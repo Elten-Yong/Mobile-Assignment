@@ -14,8 +14,15 @@ class AboutUsActivity : AppCompatActivity() {
         //viewbinding
         binding = ActivityAboutUsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val actionBar = supportActionBar
 
+        actionBar!!.title = "About Us"
+        actionBar.setDisplayHomeAsUpEnabled(true)
 
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

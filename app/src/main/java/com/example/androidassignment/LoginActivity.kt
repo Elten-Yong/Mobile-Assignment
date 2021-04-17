@@ -34,6 +34,11 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.btnCancel.setOnClickListener{
+            startActivity(Intent(this,RegisterActivity::class.java))
+            finish()
+        }
+
         binding.btnSignIn.setOnClickListener{
                doLogin()
 

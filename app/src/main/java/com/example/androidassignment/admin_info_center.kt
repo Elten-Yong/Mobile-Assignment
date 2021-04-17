@@ -101,6 +101,7 @@ class admin_info_center : Fragment() {
         binding.recyclerViewAdminInfo.adapter = adapter
         fetchPostData()
     }
+
     private fun fetchPostData(){
         val ref = FirebaseDatabase.getInstance().getReference("post")
         ref.addListenerForSingleValueEvent(object: ValueEventListener{

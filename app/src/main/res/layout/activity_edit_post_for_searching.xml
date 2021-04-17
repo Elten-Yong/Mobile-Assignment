@@ -85,5 +85,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="VectorDrawableCompat" />
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
