@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +40,7 @@ class profile : Fragment() {
     var selectedImages: String? = null
     var filepath: Uri? = null
     lateinit var progressDialog :Dialog
-
+    private var isEditProfilePicture : Boolean = false
 
 
     companion object {
@@ -90,12 +89,21 @@ class profile : Fragment() {
         }
 
         binding.ProfileImage.setOnClickListener{
-            Log.d("profile", "try show: ");
 
             //intent to select picture
             val intent = Intent(Intent.ACTION_PICK)
             intent.setType("image/*")
             startActivityForResult(intent, 111)
+        }
+
+        binding.iconHistory.setOnClickListener{
+            startActivity(Intent(getActivity(), ViewHistoryActivity::class.java))
+
+        }
+
+        binding.iconBookmark.setOnClickListener {
+            startActivity(Intent(getActivity(), BookmarkActivity::class.java))
+
         }
 
         return view
@@ -142,8 +150,6 @@ class profile : Fragment() {
 
                     isFirstTime = false
                 }
-
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -173,49 +179,27 @@ class profile : Fragment() {
     fun hideProgressDialog(){
         progressDialog.dismiss()
     }
-//
-//    override fun onResume() {
-//        super.onResume()
-//        refreshPhoneNumber()
-//    }
 
-//    fun refreshPhoneNumber(){
-//        Log.d("firebase555", "Value: " + (userId));
-//        //getUserName
-//        val ref = FirebaseDatabase.getInstance().getReference("users").child(userId)
-//        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-//
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                Log.d("firebase555", "Value: " + (snapshot.child("username").getValue().toString()))
-//
-//                binding.txtPhoneNumber.text = (snapshot.child("phone").getValue().toString())
-//
-//            }
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
-//    }
-
-//    fun reload(){
-//        // Reload current fragment
-//        // Reload current fragment
-//        var frg: Fragment? = null
-//        frg = getFragmentManager()?.findFragmentByTag("ProfileFragment")
-//        val ft1 : FragmentTransaction? = getFragmentManager()?.beginTransaction()
-//        if (frg != null) {
-//            ft1?.detach(frg)
-//        }
-//        if (frg != null) {
-//            ft1?.attach(frg)
-//        }
-//        ft1?.commit()
-//    }
+    override fun onResume() {
+        super.onResume()
+            refreshPhoneNumber()
+    }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    fun refreshPhoneNumber(){
+        //getUserName
+        val ref = FirebaseDatabase.getInstance().getReference("users").child(userId)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                binding.txtPhoneNumber.text = (snapshot.child("phone").getValue().toString())
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
 
@@ -237,19 +221,28 @@ class profile : Fragment() {
         binding.txtProfileUsername.text = viewModel.profileUserName
         binding.txtProfileEmail.text = viewModel.profileEmail
 //        binding.txtPhoneNumber.text = viewModel.profilePhoneNumber
+
         viewModel.profilePhoneNumber.observe(viewLifecycleOwner,
                 { phone ->
                     binding.txtPhoneNumber.text = phone
                 })
 
-        if(!viewModel.profilePicture.isEmpty()){
+        if(isEditProfilePicture){
+            if(!viewModel.profilePicture.isEmpty()){
+                getActivity()?.let {
+                    Glide.with(it)
+                            .load(selectedImages)
+                            .into(binding.ProfileImage)
+                }
+            }
+            isEditProfilePicture = false
+        } else if(!viewModel.profilePicture.isEmpty()){
             getActivity()?.let {
                 Glide.with(it)
-                    .load(viewModel.profilePicture)
-                    .into(binding.ProfileImage)
+                        .load(viewModel.profilePicture)
+                        .into(binding.ProfileImage)
             }
         }
-
     }
 
     // call after photo selected
@@ -258,14 +251,11 @@ class profile : Fragment() {
 
         if(requestCode == 111 && resultCode == Activity.RESULT_OK && data != null){
             // proceed and check whatthe selected image was
-            Log.d("profile", "photo selected ");
+            isEditProfilePicture = true
 
             filepath = data.data!!
-            Log.d("profile", filepath.toString())
             val bitmap = MediaStore.Images.Media.getBitmap(this.getActivity()!!.contentResolver, filepath)
-            Log.d("profile", bitmap.toString())
             ProfileImage.setImageBitmap(bitmap)
-
 
             upload()
 
@@ -289,6 +279,7 @@ class profile : Fragment() {
                     val ref = FirebaseDatabase.getInstance().getReference("users")
 
                     ref.child(userId).child("profilePicture").setValue(selectedImages.toString())
+
 
                     hideProgressDialog()
 

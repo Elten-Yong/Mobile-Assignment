@@ -11,9 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssignment">
+        <activity android:name=".ViewBookmarkPostActivity"/>
+        <activity android:name=".ViewHistoryPostActivity" />
+        <activity android:name=".ViewHistoryActivity" />
+        <activity android:name=".BookmarkActivity" />
+        <activity
+            android:name=".PostLayoutForUserActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".PostSearchingForUserActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".PostLayoutActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".EditPostForSearchingActivity"
+            android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
+        <activity android:name=".PostSearchingActivity"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".EditPostActivity" />
+        <activity android:name=".LookPostActivity" />
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -26,7 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addPostActivity"/>
+        <activity android:name=".addPostActivity" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"

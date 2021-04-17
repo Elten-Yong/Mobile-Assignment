@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.androidassignment.databinding.ActivityEditPhoneNumberBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.dialog_progress.*
@@ -47,7 +47,6 @@ class EditPhoneNumberActivity : AppCompatActivity() {
         Glide.with(this).load(intent.getStringExtra("photo")).into(binding.profilePicture)
 
         binding.btnConfirmEdit.setOnClickListener{
-//            editClicked = true
 
             editPhoneNumber()
         }
@@ -57,13 +56,11 @@ class EditPhoneNumberActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-////        if(editClicked == true){
-//            refreshPhoneNumber()
-////            editClicked = false
-////        }
-//    }
+    override fun onResume() {
+        super.onResume()
+            refreshPhoneNumber()
+
+    }
 
     //progress bar
     fun showProgressDialog(text:String){
@@ -106,23 +103,23 @@ class EditPhoneNumberActivity : AppCompatActivity() {
         finish()
     }
 
-//    fun refreshPhoneNumber(){
-//        Log.d("firebase555", "Value: " + (userId));
-//        //getUserName
-//        val ref = FirebaseDatabase.getInstance().getReference("users").child(userId)
-//        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-//
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                Log.d("firebase555", "Value: " + (snapshot.child("username").getValue().toString()))
-//
-//                binding.editTextPhoneNumber.setText(snapshot.child("phone").getValue().toString(),TextView.BufferType.EDITABLE)
-//
-//            }
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
-//    }
+    fun refreshPhoneNumber(){
+
+        //getUserName
+        val ref = FirebaseDatabase.getInstance().getReference("users").child(userId)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+
+                binding.editTextPhoneNumber.setText(snapshot.child("phone").getValue().toString(),TextView.BufferType.EDITABLE)
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
 
 
     private fun isValidPhoneNumber(phoneNumber: String?): Boolean {

@@ -108,7 +108,7 @@ class infoCenter : Fragment() {
     }
 
     private fun fetchPostDataMostView() {
-        val ref = FirebaseDatabase.getInstance().getReference("post").child("totalVisitor").orderByValue()
+        val ref = FirebaseDatabase.getInstance().getReference("post").orderByChild("totalVisitor")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -138,7 +138,7 @@ class infoCenter : Fragment() {
 
 
     private fun fetchPostDataRecent() {
-        val ref = FirebaseDatabase.getInstance().getReference("post").child("time").orderByPriority()
+        val ref = FirebaseDatabase.getInstance().getReference("post").orderByChild("time")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
