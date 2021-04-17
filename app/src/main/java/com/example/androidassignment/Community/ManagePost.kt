@@ -29,7 +29,7 @@ class ManagePost : AppCompatActivity() {
 
         setContentView(R.layout.manage_post)
 
-        supportActionBar?.title = "View posts"
+        supportActionBar?.title = "View your posts"
 
         binding = ManagePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -38,10 +38,12 @@ class ManagePost : AppCompatActivity() {
 
         recycler_view_manage_post.adapter = adapter
 
+        //Back button
         binding.toolbarPost.setNavigationOnClickListener {
             finish()
         }
 
+        //Refresh function
         binding.swipeRefresh.setOnRefreshListener {
             binding.recyclerViewManagePost.adapter = adapter
             fetchData()
@@ -56,6 +58,7 @@ class ManagePost : AppCompatActivity() {
         val POST_KEY = "POST_KEY"
     }
 
+    //Load data function
     private fun fetchData(){
         val userID = FirebaseAuth.getInstance().currentUser!!.uid
         val ref = FirebaseDatabase.getInstance().getReference("user post")
@@ -64,12 +67,13 @@ class ManagePost : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val adapter = GroupAdapter<GroupieViewHolder>()
                 snapshot.children.forEach{
-                    Log.d("posting", it.toString())
+                    Log.d("loading", it.toString())
                     val post= it.getValue(UserPost::class.java)
-                    if(post != null){
+                    if(post!!.userID == userID){
                         adapter.add(PostItem(post))
                     }
                 }
+                //Click on picture
                 adapter.setOnItemClickListener { item, view ->
                     val postItem = item as PostItem
                     val intent= Intent(view.context, ManagePostActivity::class.java)
@@ -88,6 +92,7 @@ class ManagePost : AppCompatActivity() {
 
 }
 
+//Add data to recycler view function
 class PostItem(val post: UserPost): Item<GroupieViewHolder>() {
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
