@@ -40,5 +40,28 @@
     <string name="account_informations">Account Information</string>
     <string name="phone_number">Phone Number :</string>
     <string name="comfirm">Comfirm</string>
+    <string name="add">add</string>
+    <string name="search">Search</string>
+    <string name="recent_post">Recent Post</string>
+    <string name="most_view">Most View</string>
+
+    <string name="upload_image">Upload Image</string>
+    <string name="upload">Upload</string>
+
+
+    <string name="write_your_post_here">Write Your Post Here …</string>
+    <string name="write_your_subject_here">Write Your Subject Here …</string>
+    <string name="clear_history">Clear History</string>
+
+
+
+    <string name="delete">Delete</string>
+
+
+
+
+    <string name="subject">subject</string>
+    <string name="view_image">View image</string>
+    <string name="text">text</string>
 
 </resources>

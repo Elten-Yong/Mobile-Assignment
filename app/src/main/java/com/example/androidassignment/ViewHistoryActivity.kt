@@ -32,7 +32,7 @@ class ViewHistoryActivity : AppCompatActivity() {
 
         binding = ActivityViewHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val adapter = GroupAdapter<GroupieViewHolder>()
+
         fetchPostData()
 
         binding.clearHistory.setOnClickListener{
