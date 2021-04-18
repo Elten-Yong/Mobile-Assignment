@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.bumptech.glide.Glide
 import com.example.androidassignment.databinding.ProfileFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -254,7 +255,7 @@ class profile : Fragment() {
             isEditProfilePicture = true
 
             filepath = data.data!!
-            val bitmap = MediaStore.Images.Media.getBitmap(this.getActivity()!!.contentResolver, filepath)
+            val bitmap = MediaStore.Images.Media.getBitmap(this.requireActivity().contentResolver, filepath)
             ProfileImage.setImageBitmap(bitmap)
 
             upload()

@@ -24,7 +24,7 @@ class SearchingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_searching)
+        setContentView(R.layout.searching_activity)
         val actionBar = supportActionBar
 
         actionBar!!.title = "Search"
