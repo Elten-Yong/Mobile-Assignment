@@ -1,90 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-
-    <EditText
-        android:id="@+id/subjectList"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="28dp"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/user_post"
-        app:layout_constraintStart_toStartOf="parent"
-        android:hint="@string/enter_your_text"
-        android:importantForAutofill="no" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/user_post"
-        android:layout_width="404dp"
-        android:layout_height="216dp"
-        android:layout_marginBottom="72dp"
-        android:gravity="top|start"
-        android:text=""
-        android:inputType="textMultiLine"
-        android:maxLines="9"
-        android:paddingLeft="10dp"
-        android:paddingTop="20dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="20dp"
-        android:scrollbars="none"
-        android:textColor="#000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:hint="@string/enter_your_text"
-        android:importantForAutofill="no"/>
+        <EditText
+            android:id="@+id/subjectList"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/enter_your_text"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upload" />
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="44dp"
-        android:text="Submit"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_post"
-        app:layout_constraintVertical_bias="0.111"
-        />
+        <EditText
+            android:id="@+id/user_post"
+            android:layout_width="match_parent"
+            android:layout_height="237dp"
+            android:layout_marginTop="24dp"
+            android:gravity="top|start"
+            android:hint="@string/enter_your_text"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
 
-    <Button
-        android:id="@+id/delete_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        android:textColor="@color/white"
-        android:text="Delete"
-        app:layout_constraintEnd_toStartOf="@+id/submit"
-        app:layout_constraintTop_toBottomOf="@+id/user_post" />
+            android:maxLines="9"
+            android:text=""
+            android:textColor="#000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectList" />
 
-    <Button
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_post" />
+
+        <Button
+            android:id="@+id/delete_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="44dp"
+            android:text="@string/delete"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/submit"
+            app:layout_constraintTop_toBottomOf="@+id/user_post" />
+
+        <Button
         android:id="@+id/upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Upload"
+        android:text="@string/upload"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="141dp"
-        android:layout_marginBottom="72dp"
-        app:layout_constraintBottom_toTopOf="@+id/subjectList"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="VectorDrawableCompat" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="141dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_background"
+            tools:ignore="VectorDrawableCompat"
+            android:contentDescription="@string/upload_image" />
+
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
@@ -92,5 +88,7 @@
         android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+

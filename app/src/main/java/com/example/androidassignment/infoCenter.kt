@@ -48,7 +48,7 @@ class infoCenter : Fragment() {
 
         }
 
-        binding.mostView.setOnClickListener{
+/*        binding.mostView.setOnClickListener{
             fetchPostDataMostView()
             binding.recyclerViewAdminInfo.adapter = adapter
         }
@@ -56,7 +56,7 @@ class infoCenter : Fragment() {
         binding.recentPost.setOnClickListener{
             fetchPostDataRecent()
             binding.recyclerViewAdminInfo.adapter = adapter
-        }
+        }*/
 
 
 
@@ -107,7 +107,7 @@ class infoCenter : Fragment() {
         })
     }
 
-    private fun fetchPostDataMostView() {
+    /*private fun fetchPostDataMostView() {
         val ref = FirebaseDatabase.getInstance().getReference("post").orderByChild("totalVisitor")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -164,7 +164,7 @@ class infoCenter : Fragment() {
 
             }
         })
-    }
+    }*/
 
     class PostItem(val post: information) : Item<GroupieViewHolder>() {
 
