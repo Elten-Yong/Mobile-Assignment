@@ -131,7 +131,7 @@ class ViewPostActivity : AppCompatActivity() {
         val userID = FirebaseAuth.getInstance().currentUser!!.uid
 
         if(comment.text.isEmpty()){
-            comment.error = "Please enter the topic"
+            comment.error = "Please type something"
             comment.requestFocus()
             return
         }
