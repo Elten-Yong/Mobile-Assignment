@@ -71,7 +71,7 @@
         <activity android:name=".Community.SearchingActivity" />
         <activity android:name=".EditPhoneNumberActivity" />
         <activity android:name=".AboutUsActivity" />
-        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".ForgetPasswordActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>
