@@ -41,7 +41,7 @@ class EditPostActivity : AppCompatActivity() {
 
         binding = ActivityEditPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val intent = getIntent();
+        val intent = getIntent()
 
 
         val post = intent.getParcelableExtra<information>(admin_info_center.POST_KEY)
@@ -65,7 +65,7 @@ class EditPostActivity : AppCompatActivity() {
             }
 
             if(binding.subjectList.text!= null && binding.userPost.text != null){
-                finish();
+                finish()
             }
         }
 
@@ -119,10 +119,18 @@ class EditPostActivity : AppCompatActivity() {
         val subject = binding.subjectList
         val text = binding.userPost
 
-        if(subject.text.isEmpty()){
-            subject.error = "Please enter your subject"
-            subject.requestFocus()
-            return
+        if(subject.text.isEmpty() || subject.text.length > 75){
+
+            if(subject.text.length > 75){
+                subject.error = "Do not more than 75 words"
+                subject.requestFocus()
+                return
+            }else{
+                subject.error = "Please enter your subject"
+                subject.requestFocus()
+                return
+            }
+
         }
 
         if(text.text.isEmpty()){

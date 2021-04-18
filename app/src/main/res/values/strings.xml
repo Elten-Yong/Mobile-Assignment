@@ -54,14 +54,13 @@
     <string name="clear_history">Clear History</string>
 
 
-
     <string name="delete">Delete</string>
-
-
 
 
     <string name="subject">subject</string>
     <string name="view_image">View image</string>
     <string name="text">text</string>
+    <string name="sample_card_descriptions">Sample Card Descriptions</string>
+    <string name="sample_card_title">Sample Card Title</string>
 
 </resources>
