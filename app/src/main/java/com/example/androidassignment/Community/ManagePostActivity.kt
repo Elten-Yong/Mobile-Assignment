@@ -22,10 +22,10 @@ class ManagePostActivity : AppCompatActivity() {
 
     lateinit var binding: ManagePostActivityBinding
     lateinit var imageUrl: String
+    lateinit var postID: String
     private var filepath: Uri? = null
     private var photo: String? = null
     private var changePic: Int = 0
-    lateinit var postID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,6 @@ class ManagePostActivity : AppCompatActivity() {
 
         actionBar!!.title = "Edit post"
         actionBar.setDisplayHomeAsUpEnabled(true)
-
 
         binding = ManagePostActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -51,6 +50,7 @@ class ManagePostActivity : AppCompatActivity() {
             binding.description.setText(post.description)
         }
 
+        //Submit button
         binding.Submit.setOnClickListener {
             if(changePic != 0) {
                 update()
@@ -65,16 +65,19 @@ class ManagePostActivity : AppCompatActivity() {
 
         }
 
+        //Delete button
         binding.Delete.setOnClickListener {
             deletePost()
         }
 
+        //Upload button
         binding.Upload.setOnClickListener{
             choosePic();
         }
 
     }
 
+    //Select picture
     private fun choosePic(){
         val image = Intent()
         image.setType("image/*")
@@ -92,6 +95,7 @@ class ManagePostActivity : AppCompatActivity() {
         }
     }
 
+    //Update content
     private fun update(){
         val topic = binding.topic
         val text = binding.description
@@ -129,6 +133,7 @@ class ManagePostActivity : AppCompatActivity() {
                     ref1.child(postID.toString()).setValue(post)
 
                     Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
+
                     val intent= Intent(this, ManagePost::class.java)
                     this.startActivity(intent)
                 }
@@ -138,6 +143,7 @@ class ManagePostActivity : AppCompatActivity() {
         return
     }
 
+    //Update content without changing the picture
     private fun updateNoPic() {
         val topic = binding.topic
         val text = binding.description
@@ -166,10 +172,12 @@ class ManagePostActivity : AppCompatActivity() {
         ref.child(postID.toString()).setValue(post)
 
         Toast.makeText(applicationContext, "Succesfully uploaded", Toast.LENGTH_LONG).show()
+
         val intent= Intent(this, ManagePost::class.java)
         this.startActivity(intent)
     }
 
+    //Delete the post
     private fun deletePost(){
         val ref = FirebaseDatabase.getInstance().getReference("user post").child(postID)
         ref.removeValue()
@@ -177,6 +185,7 @@ class ManagePostActivity : AppCompatActivity() {
         finish()
     }
 
+    //Back function
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true

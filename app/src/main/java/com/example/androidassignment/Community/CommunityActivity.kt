@@ -25,8 +25,6 @@ class CommunityActivity : Fragment() {
     private var _binding: CommunityFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: CommunityViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,22 +39,25 @@ class CommunityActivity : Fragment() {
         _binding = CommunityFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
 
-
+        //Add post button
         binding.WritePost.setOnClickListener{
             val intent= Intent(getActivity(), CreatePostActivity::class.java)
             getActivity()?.startActivity(intent)
         }
 
+        //Edit post button
         binding.EditPost.setOnClickListener{
             val intent= Intent(getActivity(), ManagePost::class.java)
             getActivity()?.startActivity(intent)
         }
 
+        //Search bar
         binding.SearchBar.setOnClickListener{
             val intent= Intent(getActivity(), SearchingActivity::class.java)
             getActivity()?.startActivity(intent)
         }
 
+        //Search icon
         binding.SearchIcon.setOnClickListener{
             val intent= Intent(getActivity(), SearchingActivity::class.java)
             getActivity()?.startActivity(intent)
@@ -66,6 +67,7 @@ class CommunityActivity : Fragment() {
 
         val adapter = GroupAdapter<GroupieViewHolder>()
 
+        //Refresh function
         binding.swipeRefresh.setOnRefreshListener {
             binding.recyclerViewUserPost.adapter = adapter
             fetchPostData()
@@ -79,22 +81,12 @@ class CommunityActivity : Fragment() {
         return view
     }
 
-    /*override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }*/
-
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CommunityViewModel::class.java)
-        // TODO: Use the ViewModel
-    }*/
-
     companion object{
         const val POST_KEY = "POST_KEY"
         //fun newInstance() = CommunityActivity()
     }
 
+    //Load data function
     private fun fetchPostData(){
         val ref = FirebaseDatabase.getInstance().getReference("/user post")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -124,6 +116,7 @@ class CommunityActivity : Fragment() {
         })
     }
 
+    //Add data to recycler view function
     class PostItem(val post: UserPost): Item<GroupieViewHolder>() {
 
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {

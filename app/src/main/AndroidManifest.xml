@@ -61,6 +61,7 @@
         <activity android:name=".Community.SearchingActivity" />
         <activity android:name=".EditPhoneNumberActivity"/>
         <activity android:name=".AboutUsActivity"/>
+        <activity android:name=".ForgetPasswordActivity"/>
 
     </application>
 
