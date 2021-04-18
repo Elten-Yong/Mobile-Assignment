@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/TopicInput"
-        android:layout_width="290dp"
+        android:layout_width="285dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -20,7 +20,7 @@
 
     <EditText
         android:id="@+id/DescriptionInput"
-        android:layout_width="290dp"
+        android:layout_width="285dp"
         android:layout_height="260dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
@@ -73,6 +73,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="141dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -83,7 +84,7 @@
         android:id="@+id/Topic"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Topic :"
@@ -96,7 +97,7 @@
         android:id="@+id/Description"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Description :"
