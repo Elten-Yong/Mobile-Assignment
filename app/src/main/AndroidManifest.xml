@@ -52,9 +52,7 @@
 
         <activity android:name=".addPostActivity" />
             android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
-        <activity
-            android:name=".PostSearchingActivity"
-            android:windowSoftInputMode="adjustResize" />
+
         <activity android:name=".EditPostActivity" />
         <activity android:name=".LookPostActivity" />
         <activity
@@ -76,15 +74,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Community.ManagePost" />
 
-        <activity android:name=".Community.ViewPostActivity"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".Community.ManagePost" />
 
-        <activity android:name=".Community.ManagePost" />
         <activity
             android:name=".Community.ViewPostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -92,9 +85,9 @@
 
         <activity android:name=".EditPhoneNumberActivity" />
         <activity android:name=".AboutUsActivity" />
-        <activity android:name=".ForgetPasswordActivity" />
-        <activity android:name=".EditPhoneNumberActivity" />
-        <activity android:name=".AboutUsActivity" />
+
+
+
         <activity
             android:name=".ForgetPasswordActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
