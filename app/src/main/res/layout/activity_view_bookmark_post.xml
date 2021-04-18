@@ -34,7 +34,7 @@
             android:id="@+id/subjectList"
             android:layout_width="match_parent"
             android:layout_height="84dp"
-            android:text="subject"
+            android:text="@string/subject"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
@@ -56,7 +56,8 @@
             tools:ignore="VectorDrawableCompat"
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/view_image" />
 
         <View
             android:id="@+id/view3"
@@ -70,7 +71,7 @@
             android:id="@+id/contentPost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="text"
+            android:text="@string/text"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginStart="10dp"
