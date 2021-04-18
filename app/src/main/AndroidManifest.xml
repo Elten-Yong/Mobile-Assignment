@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssignment">
-        <activity android:name=".OnlineBankingActivity"></activity>
-        <activity android:name=".DonationTypeActivity"></activity>
-        <activity android:name=".DonationMethodActivity"></activity>
-        <activity android:name=".CardInformationActivity"></activity>
+        <activity android:name=".DonationValueActivity"></activity>
+        <activity android:name=".OnlineBankingActivity" />
+        <activity android:name=".DonationTypeActivity" />
+        <activity android:name=".DonationMethodActivity" />
+        <activity android:name=".CardInformationActivity" />
         <activity android:name=".ViewBookmarkPostActivity" />
         <activity android:name=".ViewHistoryPostActivity" />
         <activity android:name=".ViewHistoryActivity" />

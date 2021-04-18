@@ -7,9 +7,7 @@
     tools:context=".OnlineBankingActivity">
 
     <ListView
-        android:id="@+id/bankList"
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="25dp" />
+        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,10 +14,10 @@ class DonationMethodActivity : AppCompatActivity() {
     fun cardInformation(view: View) {
         startActivity(Intent(this,CardInformationActivity::class.java))
     }
-
-    fun onlineBanking(){
+    fun banking(view: View) {
         startActivity(Intent(this,OnlineBankingActivity::class.java))
     }
+
 
 
 }

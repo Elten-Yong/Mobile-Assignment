@@ -12,7 +12,7 @@ class DonationTypeActivity : AppCompatActivity() {
     }
 
     fun cash(view: View) {
-        startActivity(Intent(this,DonationMethodActivity::class.java))
+        startActivity(Intent(this,DonationValueActivity::class.java))
     }
 
     fun item(view: View) {
