@@ -125,7 +125,7 @@ class EditPhoneNumberActivity : AppCompatActivity() {
     private fun isValidPhoneNumber(phoneNumber: String?): Boolean {
         val pattern: Pattern
         val matcher: Matcher
-        val PASSWORD_PATTERN = "^(01)[0-46-9]*[0-9]{7,8}\$"
+        val PASSWORD_PATTERN = "^(\\+?6?01)[0-46-9]-*[0-9]{7,8}\$"
         pattern = Pattern.compile(PASSWORD_PATTERN)
         matcher = pattern.matcher(phoneNumber)
         return matcher.matches()

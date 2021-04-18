@@ -39,7 +39,7 @@ class EditPostForSearchingActivity : AppCompatActivity() {
 
         binding = ActivityEditPostForSearchingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val intent = getIntent();
+        val intent = getIntent()
         val activity = intent.getStringExtra("view.context")
         Log.d("Testing", "From the last slide: $activity")
 
@@ -118,10 +118,18 @@ class EditPostForSearchingActivity : AppCompatActivity() {
         val subject = binding.subjectList
         val text = binding.userPost
 
-        if(subject.text.isEmpty()){
-            subject.error = "Please enter your subject"
-            subject.requestFocus()
-            return
+        if(subject.text.isEmpty() || subject.text.length > 75){
+
+            if(subject.text.length > 75){
+                subject.error = "Do not more than 75 words"
+                subject.requestFocus()
+                return
+            }else{
+                subject.error = "Please enter your subject"
+                subject.requestFocus()
+                return
+            }
+
         }
 
         if(text.text.isEmpty()){

@@ -33,13 +33,13 @@ class addPostActivity : AppCompatActivity() {
 
 
             if(binding.subjectList.text!= null && binding.userPost.text != null && changedOnphoto != 0){
-                finish();
+                finish()
             }
 
         }
 
         binding.upload.setOnClickListener{
-            choosePic();
+            choosePic()
         }
 
         binding.cancelAction.setOnClickListener{
@@ -74,10 +74,18 @@ class addPostActivity : AppCompatActivity() {
         val subject = binding.subjectList
         val text = binding.userPost
 
-        if(subject.text.isEmpty()){
-            subject.error = "Please enter your subject"
-            subject.requestFocus()
-            return
+        if(subject.text.isEmpty() || subject.text.length > 75){
+
+            if(subject.text.length > 75){
+                subject.error = "Do not more than 75 words"
+                subject.requestFocus()
+                return
+            }else{
+                subject.error = "Please enter your subject"
+                subject.requestFocus()
+                return
+            }
+
         }
 
         if(text.text.isEmpty()){
