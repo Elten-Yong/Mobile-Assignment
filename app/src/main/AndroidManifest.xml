@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.androidassignment">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,13 +17,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidAssignment" >
-        <activity android:name=".activity_location_list" >
-        </activity>
+        android:theme="@style/Theme.AndroidAssignment">
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".activity_location_maps"
+            android:label="@string/title_activity_location_maps"></activity>
+        <activity android:name=".activity_location_list"></activity>
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        android:theme="@style/Theme.AndroidAssignment">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AndroidAssignment">
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +55,6 @@
         <activity android:name=".ViewHistoryPostActivity" />
         <activity android:name=".ViewHistoryActivity" />
         <activity android:name=".BookmarkActivity" />
-
         <activity
             android:name=".PostLayoutForUserActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -58,17 +78,14 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
-        <activity android:name=".addPostActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".addPostActivity"
             android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
             android:label="@string/app_name" />
-
         <activity android:name=".Community.CreatePostActivity" />
         <activity android:name=".Community.ManagePost" />
         <activity android:name=".Community.ManagePostActivity" />
@@ -84,7 +101,6 @@
             android:name=".Community.ViewPostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Community.SearchingActivity" />
-
         <activity android:name=".EditPhoneNumberActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity

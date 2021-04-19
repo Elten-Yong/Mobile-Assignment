@@ -143,6 +143,7 @@
         android:layout_height="wrap_content"
         android:text="@string/submit"
         android:textColor="@color/white"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,23 +152,14 @@
 
     <Spinner
         android:id="@+id/spinnerYear"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtExpiryDate"
-        app:layout_constraintStart_toEndOf="@+id/slash"
-        app:layout_constraintTop_toTopOf="@+id/txtExpiryDate"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="69dp"
+        android:layout_height="38dp"
 
-    <Spinner
-        android:id="@+id/spinnerMonth"
-        android:layout_width="34dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
+        android:dropDownWidth="60sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtExpiryDate"
-        app:layout_constraintStart_toEndOf="@+id/txtExpiryDate"
+        app:layout_constraintStart_toStartOf="@+id/yearTxt"
         app:layout_constraintTop_toTopOf="@+id/txtExpiryDate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/slash"
@@ -180,6 +172,37 @@
         app:layout_constraintBottom_toBottomOf="@+id/spinnerMonth"
         app:layout_constraintStart_toEndOf="@+id/spinnerMonth"
         app:layout_constraintTop_toTopOf="@+id/spinnerMonth"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/spinnerMonth"
+        android:layout_width="68dp"
+        android:layout_height="39dp"
+        android:dropDownWidth="60sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtExpiryDate"
+        app:layout_constraintStart_toStartOf="@+id/monthTxt"
+        app:layout_constraintTop_toTopOf="@+id/txtExpiryDate"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/monthTxt"
+        android:layout_width="39dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="10dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtExpiryDate"
+        app:layout_constraintStart_toEndOf="@+id/txtExpiryDate"
+        app:layout_constraintTop_toTopOf="@+id/txtExpiryDate" />
+
+    <TextView
+        android:id="@+id/yearTxt"
+        android:layout_width="39dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="10dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtExpiryDate"
+        app:layout_constraintStart_toEndOf="@+id/slash"
+        app:layout_constraintTop_toTopOf="@+id/txtExpiryDate"
         app:layout_constraintVertical_bias="0.0" />
 
 

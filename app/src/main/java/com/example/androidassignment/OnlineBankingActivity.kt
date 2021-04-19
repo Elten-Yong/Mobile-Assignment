@@ -24,7 +24,7 @@ class OnlineBankingActivity : AppCompatActivity() {
 
         listView.setOnItemClickListener(){adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
-            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
+            //val itemIdAtPos = adapterView.getItemIdAtPosition(position)
             Toast.makeText(this, " $itemAtPos is currently offline", Toast.LENGTH_SHORT).show()
         }
     }
