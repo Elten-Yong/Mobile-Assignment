@@ -36,6 +36,7 @@ class profile : Fragment() {
     private var profilePhoneNumber :String = ""
     private var isFirstTime : Boolean = true
     private var profilePicture : String = ""
+    private var bankCard : String = ""
     val userId = FirebaseAuth.getInstance().currentUser.uid// pk
 //    var resolver = activity!!.contentResolver
     var selectedImages: String? = null
@@ -136,13 +137,13 @@ class profile : Fragment() {
                 profileEmail = (snapshot.child("email").getValue().toString())
                 profilePhoneNumber = (snapshot.child("phone").getValue().toString())
                 profilePicture = (snapshot.child("profilePicture").getValue().toString())
-
+                bankCard = (snapshot.child("cardNumber").getValue().toString())
                 //get it loaded only initially
                 if (isFirstTime) {
                     binding.txtProfileUsername.text = (snapshot.child("username").getValue().toString())
                     binding.txtProfileEmail.text = (snapshot.child("email").getValue().toString())
                     binding.txtPhoneNumber.text = (snapshot.child("phone").getValue().toString())
-
+                    binding.txtBankCard.text = (snapshot.child("cardNumber").getValue().toString())
                     getActivity()?.let {
                         Glide.with(it)
                                 .load(snapshot.child("profilePicture").getValue().toString())
@@ -213,7 +214,8 @@ class profile : Fragment() {
                 profileUserName,
                 profileEmail,
                 profilePhoneNumber,
-                profilePicture
+                profilePicture,
+                bankCard
         )
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(ProfileViewModel::class.java)
@@ -221,6 +223,7 @@ class profile : Fragment() {
         //take data from viewmodel
         binding.txtProfileUsername.text = viewModel.profileUserName
         binding.txtProfileEmail.text = viewModel.profileEmail
+        binding.txtBankCard.text = viewModel.cardNumber
 //        binding.txtPhoneNumber.text = viewModel.profilePhoneNumber
 
         viewModel.profilePhoneNumber.observe(viewLifecycleOwner,
@@ -291,5 +294,4 @@ class profile : Fragment() {
             }
         return
     }
-
 }

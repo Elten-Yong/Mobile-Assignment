@@ -5,10 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-
 class ProfileViewModel(
     userName: String, email :String , phoneNumber : String,
-    photo : String
+    photo : String, card : String
 
 ) : ViewModel() {
 
@@ -21,6 +20,7 @@ class ProfileViewModel(
     var profilePicture : String = photo
     var profileEmail : String = email
     var profileUserName : String = userName
+    var cardNumber : String = card
 
     //var profilePhoneNumber : String = phoneNumber
 
@@ -34,6 +34,7 @@ class ProfileViewModel(
         profileEmail = email
         //profilePhoneNumber = phoneNumber
         //live
+        cardNumber = card
         _profilePhoneNumber.value = phoneNumber
         profilePicture  = photo
 
