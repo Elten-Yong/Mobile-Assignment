@@ -7,7 +7,7 @@
     tools:context=".DonationValueActivity">
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/decimalTxt"
         android:layout_width="351dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
@@ -24,8 +24,8 @@
         android:layout_width="144dp"
         android:layout_height="20dp"
         android:text="Donation amount"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal" />
+        app:layout_constraintBottom_toTopOf="@+id/decimalTxt"
+        app:layout_constraintStart_toStartOf="@+id/decimalTxt" />
 
     <Button
         android:id="@+id/donateSubmitBtn"
@@ -38,6 +38,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+        app:layout_constraintTop_toBottomOf="@+id/decimalTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
