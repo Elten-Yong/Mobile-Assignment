@@ -52,7 +52,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".addPostActivity" />
+        <activity android:name=".addPostActivity"  android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
