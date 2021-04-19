@@ -16,6 +16,6 @@ class DonationTypeActivity : AppCompatActivity() {
     }
 
     fun item(view: View) {
-        startActivity(Intent(this,DonationMethodActivity::class.java))
+        startActivity(Intent(this,activity_location_list::class.java))
     }
 }

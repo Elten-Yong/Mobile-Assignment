@@ -31,7 +31,7 @@ class CardInformationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_card_information)
 
 
-        supportActionBar?.title = "Add a post"
+        supportActionBar?.title = "Card Information"
 
         auth = Firebase.auth //initialise firebase auth object
 

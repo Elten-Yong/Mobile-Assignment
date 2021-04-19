@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.androidassignment">
+    package="com.example.androidassignment" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,19 +11,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidAssignment">
-
-        <activity android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AndroidAssignment" >
+        <activity android:name=".activity_location_list" >
+        </activity>
+        <activity
+            android:name=".SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ViewBookmarkPostActivity" />
-        <activity android:name=".DonationValueActivity"></activity>
+        <activity android:name=".DonationValueActivity" />
         <activity android:name=".OnlineBankingActivity" />
         <activity android:name=".DonationTypeActivity" />
         <activity android:name=".DonationMethodActivity" />
@@ -32,7 +33,6 @@
         <activity android:name=".ViewHistoryPostActivity" />
         <activity android:name=".ViewHistoryActivity" />
         <activity android:name=".BookmarkActivity" />
-
         <activity
             android:name=".PostLayoutForUserActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -49,10 +49,7 @@
         <activity
             android:name=".PostSearchingActivity"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".addPostActivity" />
-            android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
-
         <activity android:name=".EditPostActivity" />
         <activity android:name=".LookPostActivity" />
         <activity
@@ -60,20 +57,18 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
             android:label="@string/app_name" />
-
         <activity android:name=".Community.CreatePostActivity" />
         <activity android:name=".Community.ManagePost" />
         <activity android:name=".Community.ManagePostActivity" />
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Community.ManagePost" />
 
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Community.ManagePost" />
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".Community.ManagePost" />
@@ -82,12 +77,8 @@
             android:name=".Community.ViewPostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Community.SearchingActivity" />
-
         <activity android:name=".EditPhoneNumberActivity" />
         <activity android:name=".AboutUsActivity" />
-
-
-
         <activity
             android:name=".ForgetPasswordActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
