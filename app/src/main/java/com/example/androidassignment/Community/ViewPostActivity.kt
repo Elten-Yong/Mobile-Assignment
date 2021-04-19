@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.androidassignment.DonationTypeActivity
 import com.example.androidassignment.R
+import com.example.androidassignment.RegisterActivity
 import com.example.androidassignment.databinding.ViewPostActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -83,9 +85,9 @@ class ViewPostActivity : AppCompatActivity() {
             addComment()
         }
 
-        //Donate button
-        binding.donateBtn.setOnClickListener {
-
+        //donate button intent
+        binding.donateBtn.setOnClickListener{
+            startActivity(Intent(this, DonationTypeActivity::class.java))
         }
 
         recycler_view_comments.adapter = adapter
@@ -202,5 +204,8 @@ class ViewPostActivity : AppCompatActivity() {
             return R.layout.comment_activity
         }
     }
+
+
 }
+
 
