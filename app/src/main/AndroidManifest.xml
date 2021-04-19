@@ -18,7 +18,6 @@
             android:name=".SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         android:theme="@style/Theme.AndroidAssignment">
-        <activity android:name=".SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +31,6 @@
         <activity android:name=".DonationTypeActivity" />
         <activity android:name=".DonationMethodActivity" />
         <activity android:name=".CardInformationActivity" />
-        <activity android:name=".ViewBookmarkPostActivity" />
         <activity android:name=".ViewHistoryPostActivity" />
         <activity android:name=".ViewHistoryActivity" />
         <activity android:name=".BookmarkActivity" />
@@ -53,7 +51,6 @@
         <activity
             android:name=".PostSearchingActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".addPostActivity" />
         <activity android:name=".EditPostActivity" />
         <activity android:name=".LookPostActivity" />
         <activity
@@ -64,7 +61,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".addPostActivity"  android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
+        <activity android:name=".addPostActivity"
+            android:theme="@style/Theme.AndroidAssignment.NoActionBar" />
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
@@ -82,7 +80,6 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".Community.ManagePost" />
 
-        <activity android:name=".Community.ManagePost" />
         <activity
             android:name=".Community.ViewPostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -90,7 +87,6 @@
 
         <activity android:name=".EditPhoneNumberActivity" />
         <activity android:name=".AboutUsActivity" />
-        <activity android:name=".ForgetPasswordActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".ForgetPasswordActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
