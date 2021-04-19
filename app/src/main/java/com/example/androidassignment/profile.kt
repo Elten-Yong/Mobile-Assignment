@@ -86,6 +86,14 @@ class profile : Fragment() {
             startActivity(intent)
         }
 
+        binding.bankCardEdit.setOnClickListener{
+            val intent = Intent(getActivity(), EditBankCardActivity::class.java)
+            intent.putExtra("name", profileUserName)
+            intent.putExtra("bank", bankCard)
+            intent.putExtra("photo", profilePicture)
+            startActivity(intent)
+        }
+
         binding.iconInfo.setOnClickListener{
             startActivity(Intent(getActivity(), AboutUsActivity::class.java))
         }
@@ -196,6 +204,7 @@ class profile : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 binding.txtPhoneNumber.text = (snapshot.child("phone").getValue().toString())
+                binding.txtBankCard.text = (snapshot.child("cardNumber").getValue().toString())
 
             }
             override fun onCancelled(error: DatabaseError) {
